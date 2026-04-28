@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rx MedoCard | Smart Health Savings Card</title>
+    <meta name="description"
+        content="Get up to 80% off on medicines, lab tests, and health checkups across India with Rx Medocard." />
+    <link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/site224e.css?v=HO4U8pVv1s8xSpXlTnVX8zeioqGSm-VSHQg67yWNGkQ" />
+    <link rel="stylesheet" href="css/navbar-footer1287.css?v=NWn-1yscq8aK4w3n2kUIp-P_NRxOHQ-Ab3ZWstl1AvA" />
+    <link rel="stylesheet" href="css/homepage885b.css?v=grgIaMrrsbS3amfV_bUQkFawhUZKhE2CITZ7ndzn1A8" />
+    <link rel="stylesheet" href="css/diagnostics0076.css" />
+    <link rel="stylesheet" href="css/membership278c.css" />
+    <link rel="stylesheet" href="css/offers1ca2.css" />
+    <link rel="stylesheet" href="css/opd9c39.css" />
+    <link rel="stylesheet" href="css/pharmacy1cbb.css" />
+    <link rel="stylesheet" href="css/pharmacy-stepsc896.css" />
+    <link rel="stylesheet" href="css/hospitals5f63.css" />
+    <link rel="stylesheet" href="css/form-styles8a13.css" />
+    <link rel="stylesheet" href="css/payment74ef.css" />
+    <link rel="stylesheet" href="css/membership-cardc6be.css" />
+    <link rel="stylesheet" href="css/navbar-toggle-fix.html" />
+    <link rel="stylesheet" href="css/mobile-menu4616.css" />
+    <link rel="stylesheet" href="css/desktop-navbare91c.css" />
+    <link rel="stylesheet" href="RxMedoWeb.styles62d4.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <style>
+        @media (max-width: 768px) {
+            .desktop-dropdown { display: none !important; }
+            .mobile-dropdown { display: block !important; }
+        }
+        @media (min-width: 769px) {
+            .mobile-dropdown { display: none !important; }
+        }
+        .mobile-dropdown .dropdown-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 18px; font-size: 15px; font-weight: 500; color: #002b5c; width: 100%;
+        }
+        .mobile-dropdown .dropdown-item i { font-size: 18px; color: #002b5c; }
+        .nav-item.dropdown { position: relative; }
+        .nav-item .dropdown-menu {
+            position: absolute; top: 100%; left: 0; margin-top: 5px;
+            display: none; opacity: 0; visibility: hidden; transition: opacity 0.2s ease;
+        }
+        @media (min-width: 992px) {
+            .nav-item.dropdown:hover .dropdown-menu { display: block !important; opacity: 1 !important; visibility: visible !important; }
+        }
+        @media (max-width: 991px) {
+            .nav-item.dropdown.show .dropdown-menu { display: block !important; opacity: 1 !important; visibility: visible !important; }
+        }
+    </style>
+
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --primary: #005bea;
+            --secondary: #00c6fb;
+            --accent: #ff8c00;
+            --dark: #0b132b;
+            --light: #ffffff;
+            --glow-red: #ff4e50;
+            --glow-gold: #f9d423;
+            --green: #00e676;
+            --purple: #7c3aed;
+            --card-radius: 24px;
+            --transition-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            background: #f0f4f8;
+            color: var(--dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e0e5ec; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+
+        /* ===== PAGE LOADER ===== */
+        .page-loader {
+            position: fixed; inset: 0;
+            background: linear-gradient(135deg, #0b0f2e, #1a1f4e);
+            z-index: 10000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader-spinner {
+            width: 60px; height: 60px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top-color: var(--glow-red); border-right-color: var(--glow-gold);
+            border-radius: 50%; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loader-text {
+            color: rgba(255,255,255,0.7); margin-top: 20px;
+            font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase;
+        }
+
+        /* ===== PARTICLES ===== */
+        .particles-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .particle {
+            position: absolute; border-radius: 50%; opacity: 0.07;
+            animation: floatParticle linear infinite;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.07; } 90% { opacity: 0.07; }
+            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+        }
+
+        /* ===== FLOATING BUTTON ===== */
+        .floating-btn {
+            position: fixed; bottom: 100px; right: 25px;
+            background: linear-gradient(135deg, #ff2e63, #ff8c00);
+            color: white; padding: 16px 30px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 1rem;
+            box-shadow: 0 8px 30px rgba(255,46,99,0.4);
+            transition: all 0.4s var(--transition-smooth);
+            z-index: 999; display: flex; align-items: center; gap: 8px;
+            letter-spacing: 0.5px; animation: pulseBtn 2s ease-in-out infinite;
+        }
+        .floating-btn::before {
+            content: '\f2bb'; font-family: 'Font Awesome 6 Free';
+            font-weight: 900; font-size: 1.1rem;
+        }
+        .floating-btn:hover {
+            transform: scale(1.12) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255,46,99,0.5); color: white;
+        }
+        @keyframes pulseBtn {
+            0%,100% { box-shadow: 0 8px 30px rgba(255,46,99,0.4); }
+            50% { box-shadow: 0 8px 50px rgba(255,46,99,0.7); }
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed; bottom: 30px; left: 30px;
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border: none; border-radius: 50%;
+            font-size: 1.2rem; cursor: pointer; z-index: 998;
+            opacity: 0; visibility: hidden; transform: translateY(20px);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,91,234,0.3);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { transform: translateY(-5px) scale(1.1); }
+
+        /* ===== HERO SECTION ===== */
+        .hero-wrapper {
+            position: relative; min-height: 100vh;
+            background: linear-gradient(160deg, #0a0e27 0%, #141852 25%, #1e2a78 50%, #2d1b69 75%, #0a0e27 100%);
+            overflow: hidden; display: flex; align-items: center;
+            padding: 100px 20px 60px;
+        }
+        .hero-grid-bg {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridMove 25s linear infinite;
+        }
+        @keyframes gridMove { 0% { transform: translate(0,0); } 100% { transform: translate(80px,80px); } }
+
+        .hero-orb {
+            position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none;
+        }
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: rgba(255,78,80,0.12); top: -150px; right: -100px;
+            animation: orbFloat 8s ease-in-out infinite alternate;
+        }
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(0,198,251,0.1); bottom: -100px; left: -100px;
+            animation: orbFloat 10s ease-in-out infinite alternate-reverse;
+        }
+        .hero-orb-3 {
+            width: 300px; height: 300px;
+            background: rgba(124,58,237,0.1); top: 40%; left: 50%;
+            animation: orbFloat 12s ease-in-out infinite alternate;
+        }
+        @keyframes orbFloat {
+            0% { transform: translate(0,0) scale(1); }
+            100% { transform: translate(30px,-30px) scale(1.15); }
+        }
+
+        .hero-content-grid {
+            position: relative; z-index: 2;
+            max-width: 1300px; margin: 0 auto; width: 100%;
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center;
+        }
+        @media (max-width: 992px) {
+            .hero-content-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .hero-left { align-items: center; }
+            .hero-features-grid { justify-content: center; }
+            .hero-cta-group { justify-content: center; }
+        }
+
+        .hero-left { display: flex; flex-direction: column; gap: 25px; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,78,80,0.15); border: 1px solid rgba(255,78,80,0.3);
+            color: #ff8a80; padding: 8px 22px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 2px;
+            text-transform: uppercase; width: fit-content;
+            animation: fadeSlideDown 0.8s ease 0.2s both;
+        }
+        .hero-badge i { animation: sparkle 2s ease-in-out infinite; }
+        @keyframes sparkle {
+            0%,100% { transform: scale(1) rotate(0); }
+            50% { transform: scale(1.3) rotate(15deg); }
+        }
+
+        .hero-title {
+            font-size: 3.5rem; font-weight: 900; color: white; line-height: 1.15;
+            animation: fadeSlideDown 0.8s ease 0.4s both;
+        }
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, var(--glow-red), var(--glow-gold), var(--secondary));
+            background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%,100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem; color: rgba(255,255,255,0.6); line-height: 1.7;
+            max-width: 550px; font-weight: 300;
+            animation: fadeSlideDown 0.8s ease 0.6s both;
+        }
+
+        .hero-features-grid {
+            display: flex; flex-wrap: wrap; gap: 15px;
+            animation: fadeSlideDown 0.8s ease 0.8s both;
+        }
+        .hero-feature-pill {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+            padding: 10px 18px; border-radius: 14px;
+            color: rgba(255,255,255,0.85); font-size: 0.88rem; font-weight: 500;
+            transition: all 0.3s ease; cursor: default; backdrop-filter: blur(5px);
+        }
+        .hero-feature-pill:hover {
+            background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+        .hero-feature-pill i { font-size: 1rem; }
+        .hero-feature-pill .pill-icon-green { color: var(--green); }
+        .hero-feature-pill .pill-icon-blue { color: var(--secondary); }
+        .hero-feature-pill .pill-icon-gold { color: var(--glow-gold); }
+        .hero-feature-pill .pill-icon-red { color: var(--glow-red); }
+        .hero-feature-pill .pill-icon-purple { color: #b388ff; }
+
+        .hero-cta-group {
+            display: flex; gap: 15px; flex-wrap: wrap;
+            animation: fadeSlideDown 0.8s ease 1s both;
+        }
+        .hero-btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--glow-red), var(--accent));
+            color: white; padding: 16px 36px; border-radius: 16px;
+            font-weight: 700; font-size: 1rem; text-decoration: none;
+            box-shadow: 0 8px 30px rgba(255,78,80,0.35);
+            transition: all 0.4s var(--transition-smooth);
+            position: relative; overflow: hidden;
+        }
+        .hero-btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .hero-btn-primary:hover::before { left: 100%; }
+        .hero-btn-primary:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 45px rgba(255,78,80,0.45); color: white;
+        }
+
+        .hero-btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+            color: white; padding: 16px 36px; border-radius: 16px;
+            font-weight: 600; font-size: 1rem; text-decoration: none;
+            transition: all 0.4s ease; backdrop-filter: blur(5px);
+        }
+        .hero-btn-secondary:hover {
+            background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4);
+            transform: translateY(-4px); color: white;
+        }
+
+        .hero-trust-bar {
+            display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+            animation: fadeSlideDown 0.8s ease 1.2s both;
+        }
+        .trust-avatars {
+            display: flex;
+        }
+        .trust-avatar {
+            width: 38px; height: 38px; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.7rem; font-weight: 700;
+            margin-left: -10px;
+        }
+        .trust-avatar:first-child { margin-left: 0; }
+        .trust-text { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+        .trust-text strong { color: rgba(255,255,255,0.9); }
+
+        /* HERO RIGHT - Card Display */
+        .hero-right {
+            display: flex; flex-direction: column; align-items: center;
+            animation: fadeSlideUp 1s ease 0.6s both;
+        }
+
+        .card-showcase {
+            position: relative; width: 100%; max-width: 480px;
+        }
+
+        .card-glow {
+            position: absolute; inset: -20px; border-radius: 30px;
+            background: radial-gradient(ellipse, rgba(255,78,80,0.15), transparent 70%);
+            animation: cardGlowPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes cardGlowPulse {
+            0%,100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .card-frame {
+            width: 100%; border-radius: 20px;
+            border: 2px solid rgba(255,78,80,0.3);
+            overflow: hidden; position: relative;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4), 0 0 40px rgba(255,78,80,0.08);
+            background: #111; transition: transform 0.5s ease, box-shadow 0.5s ease;
+            cursor: pointer;
+        }
+        .card-frame:hover {
+            box-shadow: 0 35px 100px rgba(0,0,0,0.5), 0 0 60px rgba(255,78,80,0.15);
+        }
+        .card-frame::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+            background-size: 200% 200%; animation: cardShine 5s ease-in-out infinite;
+            pointer-events: none; z-index: 5;
+        }
+        @keyframes cardShine {
+            0% { background-position: 200% 200%; }
+            50% { background-position: 0% 0%; }
+            100% { background-position: 200% 200%; }
+        }
+
+        .slides {
+            display: flex; width: 200%; height: 100%;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .slides img { width: 50%; height: 100%; object-fit: contain; }
+
+        .slide-indicators {
+            display: flex; justify-content: center; gap: 10px; margin-top: 20px;
+        }
+        .slide-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); border: none;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .slide-dot.active {
+            background: var(--glow-red);
+            box-shadow: 0 0 12px rgba(255,78,80,0.6); transform: scale(1.4);
+        }
+
+        /* Price Display */
+        .hero-price-box {
+            margin-top: 30px; text-align: center;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px; padding: 25px 35px; backdrop-filter: blur(10px);
+            width: 100%; max-width: 480px;
+        }
+        .price-label {
+            font-size: 0.85rem; color: rgba(255,255,255,0.5);
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .price-label i { color: var(--glow-gold); animation: sparkle 2s ease-in-out infinite; }
+
+        .price-row {
+            display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;
+        }
+        .old-price {
+            font-size: 1.4rem; color: rgba(255,255,255,0.35);
+            text-decoration: line-through; font-weight: 500;
+        }
+        .new-price-tag {
+            background: linear-gradient(135deg, var(--glow-red), #ff6b35, var(--glow-gold));
+            background-size: 200% 200%; animation: priceGlow 3s ease-in-out infinite;
+            padding: 12px 40px; border-radius: 14px;
+            color: white; font-weight: 800; position: relative; overflow: hidden;
+            box-shadow: 0 10px 40px rgba(255,78,80,0.3);
+            transition: transform 0.3s ease;
+        }
+        .new-price-tag:hover { transform: scale(1.05); }
+        @keyframes priceGlow {
+            0%,100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .new-price-tag .currency { font-size: 1.3rem; vertical-align: super; }
+        .new-price-tag .price-amount { font-size: 2.6rem; line-height: 1; }
+        .new-price-tag .price-validity {
+            font-size: 0.8rem; color: rgba(255,255,255,0.85); margin-top: 4px;
+            display: flex; align-items: center; justify-content: center; gap: 5px;
+        }
+
+        .savings-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(0,230,118,0.12); border: 1px solid rgba(0,230,118,0.25);
+            color: var(--green); padding: 8px 20px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 600; margin-top: 15px;
+            animation: savingsPop 0.6s ease 1.5s both;
+        }
+        @keyframes savingsPop {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .card-showcase { max-width: 340px; }
+            .hero-price-box { max-width: 340px; padding: 20px; }
+            .new-price-tag .price-amount { font-size: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.8rem; }
+            .hero-wrapper { padding: 80px 15px 40px; }
+        }
+
+        /* ===== MARQUEE TICKER ===== */
+        .ticker-bar {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 12px 0; overflow: hidden; position: relative; z-index: 5;
+        }
+        .ticker-track {
+            display: flex; width: max-content;
+            animation: tickerScroll 30s linear infinite;
+        }
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-item {
+            display: flex; align-items: center; gap: 8px;
+            color: white; font-size: 0.9rem; font-weight: 600;
+            padding: 0 40px; white-space: nowrap;
+        }
+        .ticker-item i { color: var(--glow-gold); }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            padding: 100px 20px; background: white; position: relative; overflow: hidden;
+        }
+        .how-it-works::before {
+            content: ''; position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,91,234,0.04), transparent 70%);
+            top: -200px; left: -200px; border-radius: 50%;
+        }
+
+        .section-header { text-align: center; margin-bottom: 70px; position: relative; z-index: 2; }
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; padding: 6px 22px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .section-main-title {
+            font-size: 2.8rem; font-weight: 800; color: var(--dark);
+            margin-bottom: 15px; line-height: 1.2;
+        }
+        .section-main-title span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .section-desc {
+            max-width: 650px; margin: 0 auto; color: #666;
+            font-size: 1.05rem; line-height: 1.7;
+        }
+
+        .steps-container {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 30px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;
+        }
+        @media (max-width: 992px) { .steps-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 576px) { .steps-container { grid-template-columns: 1fr; } }
+
+        .step-card {
+            background: #f8fafc; border-radius: var(--card-radius);
+            padding: 40px 25px; text-align: center; position: relative;
+            border: 1px solid #eef2f7; transition: all 0.5s var(--transition-smooth);
+            overflow: hidden;
+        }
+        .step-card::before {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left;
+        }
+        .step-card:hover { transform: translateY(-12px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+        .step-card:hover::before { transform: scaleX(1); }
+
+        .step-number {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; font-size: 1.2rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 6px 20px rgba(0,91,234,0.25);
+            transition: transform 0.4s ease;
+        }
+        .step-card:hover .step-number { transform: scale(1.15) rotate(-10deg); }
+
+        .step-icon {
+            font-size: 2.5rem; margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            transition: transform 0.4s ease;
+        }
+        .step-card:hover .step-icon { transform: scale(1.2); }
+
+        .step-card h4 {
+            font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: var(--dark);
+        }
+        .step-card p { font-size: 0.9rem; color: #777; line-height: 1.6; }
+
+        /* Connecting line between steps */
+        .step-connector {
+            display: none;
+        }
+        @media (min-width: 993px) {
+            .step-connector {
+                display: block; position: absolute; top: 65px;
+                right: -18px; width: 36px; height: 2px;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                z-index: 3;
+            }
+            .step-connector::after {
+                content: ''; position: absolute; right: -4px; top: -4px;
+                width: 10px; height: 10px; border-radius: 50%;
+                background: var(--secondary);
+            }
+        }
+
+        /* ===== BENEFITS SECTION ===== */
+        .benefits-section {
+            position: relative; padding: 100px 20px;
+            background: linear-gradient(180deg, #f0f4f8, #e8edf5, #f0f4f8);
+            overflow: hidden;
+        }
+
+        .benefits-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 30px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;
+        }
+        @media (max-width: 992px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+        .benefit-card {
+            background: white; border-radius: var(--card-radius);
+            padding: 40px 28px; position: relative; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.5s var(--transition-smooth);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .benefit-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 4px; border-radius: var(--card-radius) var(--card-radius) 0 0;
+            transition: height 0.4s ease;
+        }
+        .benefit-card.card-discount::before { background: linear-gradient(90deg, #ff4e50, #ff8c00); }
+        .benefit-card.card-benefits::before { background: linear-gradient(90deg, #00c853, var(--green)); }
+        .benefit-card.card-privileges::before { background: linear-gradient(90deg, #2196f3, #00bcd4); }
+
+        .benefit-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.1);
+        }
+        .benefit-card:hover::before { height: 6px; }
+
+        .card-corner {
+            position: absolute; top: -30px; right: -30px;
+            width: 100px; height: 100px; border-radius: 50%; opacity: 0.06;
+            transition: all 0.5s ease;
+        }
+        .benefit-card:hover .card-corner { transform: scale(1.5); opacity: 0.12; }
+        .card-discount .card-corner { background: #ff4e50; }
+        .card-benefits .card-corner { background: #00c853; }
+        .card-privileges .card-corner { background: #2196f3; }
+
+        .benefit-icon-box {
+            width: 70px; height: 70px; border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; color: white; margin-bottom: 22px;
+            transition: transform 0.4s ease;
+        }
+        .benefit-card:hover .benefit-icon-box { transform: scale(1.1) rotate(-5deg); }
+        .card-discount .benefit-icon-box {
+            background: linear-gradient(135deg, #ff4e50, #ff8c00);
+            box-shadow: 0 8px 25px rgba(255,78,80,0.3);
+        }
+        .card-benefits .benefit-icon-box {
+            background: linear-gradient(135deg, #00c853, var(--green));
+            box-shadow: 0 8px 25px rgba(0,200,83,0.3);
+        }
+        .card-privileges .benefit-icon-box {
+            background: linear-gradient(135deg, #2196f3, #00bcd4);
+            box-shadow: 0 8px 25px rgba(33,150,243,0.3);
+        }
+
+        .benefit-card h5 {
+            font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: var(--dark);
+        }
+        .card-ribbon {
+            position: absolute; top: 20px; right: -35px;
+            background: linear-gradient(135deg, var(--glow-red), var(--glow-gold));
+            color: white; padding: 5px 40px; font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 1px; transform: rotate(45deg); text-transform: uppercase; z-index: 3;
+        }
+
+        .benefit-list {
+            list-style: none; padding: 0; margin: 0;
+        }
+        .benefit-list li {
+            position: relative; padding: 10px 0 10px 34px;
+            font-size: 0.92rem; color: #444;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+        .benefit-list li:last-child { border-bottom: none; }
+        .benefit-list li:hover { padding-left: 40px; color: var(--dark); }
+        .benefit-list li::before {
+            content: ''; position: absolute; left: 0; top: 50%;
+            transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%;
+        }
+        .benefit-list li::after {
+            content: '✓'; position: absolute; left: 6px; top: 50%;
+            transform: translateY(-50%); font-size: 0.7rem; font-weight: 800;
+        }
+        .card-discount .benefit-list li::before { background: rgba(255,78,80,0.1); }
+        .card-discount .benefit-list li::after { color: #ff4e50; }
+        .card-benefits .benefit-list li::before { background: rgba(0,200,83,0.1); }
+        .card-benefits .benefit-list li::after { color: #00c853; }
+        .card-privileges .benefit-list li::before { background: rgba(33,150,243,0.1); }
+        .card-privileges .benefit-list li::after { color: #2196f3; }
+
+        .privilege-block {
+            margin-bottom: 15px; padding: 15px; border-radius: 14px;
+            background: #f8fafc; transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        .privilege-block:hover { background: #eef3ff; transform: translateX(5px); }
+        .card-privileges .privilege-block:nth-child(1):hover { border-left-color: #2196f3; }
+        .card-privileges .privilege-block:nth-child(2):hover { border-left-color: #00bcd4; }
+        .card-privileges .privilege-block:nth-child(3):hover { border-left-color: #673ab7; }
+        .privilege-block h6 {
+            font-weight: 700; color: var(--dark); margin-bottom: 5px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .privilege-block p { margin: 0; font-size: 0.88rem; color: #666; line-height: 1.6; }
+
+        /* ===== STATS BAR ===== */
+        .stats-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--dark) 0%, #141852 100%);
+            position: relative; overflow: hidden;
+        }
+        .stats-section::before {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(0,198,251,0.08), transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255,78,80,0.08), transparent 50%);
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 30px; max-width: 1000px; margin: 0 auto;
+            position: relative; z-index: 2;
+        }
+        @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
+
+        .stat-card {
+            text-align: center; padding: 30px 15px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px; backdrop-filter: blur(5px);
+            transition: all 0.4s ease;
+        }
+        .stat-card:hover {
+            background: rgba(255,255,255,0.08); transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .stat-icon {
+            font-size: 2rem; margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .stat-number {
+            font-size: 2.8rem; font-weight: 800; line-height: 1;
+            background: linear-gradient(135deg, var(--glow-gold), var(--glow-red));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .stat-label {
+            font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 500; margin-top: 8px;
+        }
+
+        /* ===== WHY CHOOSE US ===== */
+        .why-choose {
+            padding: 100px 20px; background: white; position: relative; overflow: hidden;
+        }
+        .why-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 25px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;
+        }
+        @media (max-width: 992px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 576px) { .why-grid { grid-template-columns: 1fr; } }
+
+        .why-card {
+            padding: 30px 25px; border-radius: 20px;
+            background: linear-gradient(135deg, #f8fafc, #fff);
+            border: 1px solid #eef2f7; transition: all 0.4s var(--transition-smooth);
+            display: flex; gap: 18px; align-items: flex-start;
+        }
+        .why-card:hover {
+            transform: translateY(-8px); box-shadow: 0 15px 50px rgba(0,0,0,0.07);
+            border-color: transparent;
+        }
+        .why-icon {
+            width: 55px; height: 55px; min-width: 55px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: white; flex-shrink: 0;
+            transition: transform 0.4s ease;
+        }
+        .why-card:hover .why-icon { transform: rotate(-10deg) scale(1.1); }
+
+        .why-card:nth-child(1) .why-icon { background: linear-gradient(135deg, #ff4e50, #ff8c00); }
+        .why-card:nth-child(2) .why-icon { background: linear-gradient(135deg, #00c853, var(--green)); }
+        .why-card:nth-child(3) .why-icon { background: linear-gradient(135deg, #2196f3, #00bcd4); }
+        .why-card:nth-child(4) .why-icon { background: linear-gradient(135deg, var(--purple), #b388ff); }
+        .why-card:nth-child(5) .why-icon { background: linear-gradient(135deg, var(--glow-gold), var(--accent)); }
+        .why-card:nth-child(6) .why-icon { background: linear-gradient(135deg, #e91e63, #f48fb1); }
+
+        .why-card h5 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+        .why-card p { font-size: 0.88rem; color: #777; line-height: 1.6; margin: 0; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #f0f4f8, #e8edf5);
+            position: relative; overflow: hidden;
+        }
+        .testimonials-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 30px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;
+        }
+        @media (max-width: 992px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 576px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+        .testimonial-card {
+            background: white; border-radius: var(--card-radius);
+            padding: 35px 28px; position: relative; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            transition: all 0.5s var(--transition-smooth);
+            border: 1px solid #eef2f7;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+        .testimonial-card::before {
+            content: '"'; position: absolute; top: -10px; left: 20px;
+            font-size: 6rem; color: rgba(0,91,234,0.06); font-family: Georgia, serif;
+            line-height: 1; pointer-events: none;
+        }
+        .testimonial-stars {
+            display: flex; gap: 3px; margin-bottom: 15px;
+        }
+        .testimonial-stars i { color: var(--glow-gold); font-size: 0.9rem; }
+
+        .testimonial-card p {
+            font-size: 0.95rem; color: #555; line-height: 1.7;
+            margin-bottom: 20px; font-style: italic;
+        }
+        .testimonial-author {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .author-avatar {
+            width: 45px; height: 45px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 1rem;
+        }
+        .author-info h6 { font-size: 0.95rem; font-weight: 700; margin: 0; color: var(--dark); }
+        .author-info span { font-size: 0.8rem; color: #999; }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            padding: 100px 20px; background: white; position: relative; overflow: hidden;
+        }
+        .faq-container {
+            max-width: 800px; margin: 0 auto; position: relative; z-index: 2;
+        }
+        .faq-item {
+            background: #f8fafc; border-radius: 16px;
+            margin-bottom: 12px; border: 1px solid #eef2f7;
+            overflow: hidden; transition: all 0.3s ease;
+        }
+        .faq-item:hover { border-color: rgba(0,91,234,0.2); }
+        .faq-question {
+            padding: 20px 25px; cursor: pointer;
+            display: flex; align-items: center; justify-content: space-between;
+            font-weight: 600; font-size: 1rem; color: var(--dark);
+            transition: all 0.3s ease; gap: 15px;
+        }
+        .faq-question:hover { color: var(--primary); }
+        .faq-question i {
+            font-size: 0.9rem; transition: transform 0.3s ease;
+            color: var(--primary); flex-shrink: 0;
+        }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px; padding: 0 25px 20px;
+        }
+        .faq-answer p {
+            font-size: 0.92rem; color: #666; line-height: 1.7; margin: 0;
+        }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--dark), #141852, #2d1b69);
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                radial-gradient(circle at 30% 40%, rgba(255,78,80,0.1), transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(0,198,251,0.1), transparent 50%);
+        }
+        .cta-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+        .cta-content h2 {
+            font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 15px;
+        }
+        .cta-content p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 35px; line-height: 1.7;
+        }
+        .cta-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+        /* ===== TALK TO EXPERT FORM ===== */
+        .expert-form-section {
+            padding: 80px 20px; background: linear-gradient(180deg, #f0f4f8, #fff);
+            position: relative; overflow: hidden;
+        }
+        .expert-form-wrapper {
+            max-width: 550px; margin: 0 auto; position: relative; z-index: 2;
+        }
+        .expert-form-card {
+            background: white; border-radius: var(--card-radius);
+            padding: 45px 35px; text-align: center;
+            box-shadow: 0 15px 60px rgba(0,0,0,0.08);
+            border: 1px solid #eef2f7; position: relative; overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .expert-form-card:hover {
+            box-shadow: 0 25px 80px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+        .expert-form-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--glow-gold));
+        }
+
+        .expert-emoji { font-size: 3rem; margin-bottom: 10px; animation: wave 2s ease-in-out infinite; }
+        @keyframes wave {
+            0%,100% { transform: rotate(0); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-10deg); }
+        }
+        .expert-form-card h3 {
+            font-size: 1.6rem; font-weight: 800; color: var(--dark); margin-bottom: 5px;
+        }
+        .expert-form-card .form-subtitle {
+            font-size: 0.92rem; color: #888; margin-bottom: 30px; line-height: 1.5;
+        }
+
+        .expert-form { display: flex; flex-direction: column; gap: 18px; text-align: left; }
+
+        .form-group { position: relative; }
+        .form-group label {
+            font-size: 0.85rem; font-weight: 600; color: #555; margin-bottom: 6px; display: block;
+        }
+        .form-group .input-wrapper {
+            position: relative;
+        }
+        .form-group .input-icon {
+            position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+            color: #aaa; font-size: 1rem; transition: color 0.3s ease;
+            pointer-events: none;
+        }
+        .form-group input {
+            width: 100%; padding: 14px 16px 14px 48px;
+            border: 2px solid #e8edf5; border-radius: 14px;
+            font-size: 0.95rem; font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease; background: #f8fafc;
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(0,91,234,0.1);
+        }
+        .form-group input:focus + .input-icon,
+        .form-group input:focus ~ .input-icon { color: var(--primary); }
+
+        .form-group input::placeholder { color: #bbb; }
+
+        .expert-submit-btn {
+            width: 100%; padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border: none; border-radius: 14px;
+            font-size: 1rem; font-weight: 700; font-family: 'Poppins', sans-serif;
+            cursor: pointer; position: relative; overflow: hidden;
+            transition: all 0.4s ease; display: flex; align-items: center;
+            justify-content: center; gap: 10px;
+            box-shadow: 0 8px 25px rgba(0,91,234,0.3);
+        }
+        .expert-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,91,234,0.4);
+        }
+        .expert-submit-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .expert-submit-btn:hover::before { left: 100%; }
+
+        .form-trust-icons {
+            display: flex; align-items: center; justify-content: center;
+            gap: 20px; margin-top: 20px; flex-wrap: wrap;
+        }
+        .trust-badge-sm {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 0.78rem; color: #999;
+        }
+        .trust-badge-sm i { color: var(--green); }
+
+        .form-success-msg {
+            display: none; text-align: center; padding: 20px;
+        }
+        .form-success-msg.show { display: block; }
+        .form-success-msg i { font-size: 3rem; color: var(--green); margin-bottom: 10px; }
+        .form-success-msg h4 { font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+        .form-success-msg p { font-size: 0.9rem; color: #888; }
+
+        @media (max-width: 576px) {
+            .expert-form-card { padding: 30px 20px; }
+            .expert-form-card h3 { font-size: 1.3rem; }
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s var(--transition-smooth);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left {
+            opacity: 0; transform: translateX(-60px);
+            transition: all 0.8s var(--transition-smooth);
+        }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        .reveal-right {
+            opacity: 0; transform: translateX(60px);
+            transition: all 0.8s var(--transition-smooth);
+        }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal-scale {
+            opacity: 0; transform: scale(0.85);
+            transition: all 0.8s var(--transition-smooth);
+        }
+        .reveal-scale.active { opacity: 1; transform: scale(1); }
+
+        /* ===== MOBILE FIXES ===== */
+        @media (max-width: 768px) {
+            .section-main-title { font-size: 2rem; }
+            .why-grid { gap: 15px; }
+        }
+        @media (max-width: 480px) {
+            .section-main-title { font-size: 1.6rem; }
+            .section-desc { font-size: 0.92rem; }
+            .cta-content h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PAGE LOADER -->
+    <!-- <div class="page-loader" id="pageLoader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Loading...</div>
+    </div> -->
+
+    <!-- PARTICLES -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ========== HEADER (UNCHANGED) ========== -->
+    <header class="header-modern">
+        <link rel="stylesheet" href="header-modern.css" />
+        <nav class="navbar navbar-expand-custom navbar-light navbar-modern">
+            <div class="container-fluid px-4 d-flex justify-content-between align-items-center position-relative">
+                <a class="navbar-brand me-4" href="index.html">
+                    <div class="logo-with-icon">
+                        <div class="logo-icon"><img src="images/logo.ico" alt="RX MEDO CARD Logo" class="logo-image"></div>
+                        <div class="logo-text-wrapper">
+                            <div class="logo-text">Rx Medo Card</div>
+                            <div class="logo-subtitle">AN INITIATIVE OF Rx MEDICAL TRUST</div>
+                        </div>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <i class="fas fa-bars-staggered" style="font-size:2rem;"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="mobile-menu-header d-md-none">
+                        <h5 class="mobile-menu-title">Menu</h5>
+                        <button class="mobile-menu-close" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <ul class="navbar-nav d-flex flex-column flex-lg-row w-100">
+                        <li class="nav-item"><a class="nav-link" href="index.html"><div class="mobile-item"><i class="fas fa-home"></i><span>Home</span></div></a></li>
+                        <li class="nav-item dropdown desktop-dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="cardDropdown" data-bs-toggle="dropdown"><div class="mobile-item"><i class="fas fa-tags"></i><span>Card Details</span></div></a>
+                            <ul class="dropdown-menu" aria-labelledby="cardDropdown">
+                                <li><a class="dropdown-item" href="medocard.html"><i class="fas fa-id-card"></i> Rx Medo Card</a></li>
+                                <li><a class="dropdown-item" href="medoTopUpCard.html"><i class="fas fa-plus-circle"></i> RX Medo Top-Up Card</a></li>
+                                <li><a class="dropdown-item" href="medofamily.html"><i class="fas fa-users"></i> Rx Medo Family Card</a></li>
+                                <li><a class="dropdown-item" href="medoTopUpfamily.html"><i class="fas fa-layer-group"></i> Rx Medo Family Top-Up Card</a></li>
+                                <li><a class="dropdown-item" href="youngshield.html"><i class="fas fa-child"></i> Rx Medo YoungShield Card</a></li>
+                                <li><a class="dropdown-item" href="citizecare.html"><i class="fas fa-user-shield"></i> Rx Medo CitizenCare Card</a></li>
+                                <li><a class="dropdown-item" href="guardiancare.html"><i class="fas fa-user-shield"></i> Rx Medo GuardianCare Card</a></li>
+                                <li><a class="dropdown-item" href="medoFamilysecure.html"><i class="fas fa-home"></i> Rx Medo FamilySecure Card</a></li>
+                                <li><a class="dropdown-item" href="seniorshield.html"><i class="fas fa-user"></i> Rx Medo SeniorShield Card</a></li>
+                            </ul>
+                        </li>
+                        <div class="dropdown mobile-dropdown">
+                            <button class="btn w-100 d-flex justify-content-between align-items-center" data-bs-toggle="dropdown">
+                                <span><i class="fas fa-tags"></i> Card Details</span>
+                                <i class="fas fa-chevron-down" style="margin-left: 70px;"></i>
+                            </button>
+                            <ul class="dropdown-menu w-100 mt-1">
+                                <li><a class="dropdown-item" href="medocard.html"><i class="fas fa-id-card"></i> Rx Medo Card</a></li>
+                                <li><a class="dropdown-item" href="medoTopUpCard.html"><i class="fas fa-plus-circle"></i> RX Medo Top-Up Card</a></li>
+                                <li><a class="dropdown-item" href="medofamily.html"><i class="fas fa-users"></i> Rx Medo Family Card</a></li>
+                                <li><a class="dropdown-item" href="medoTopUpfamily.html"><i class="fas fa-layer-group"></i> Rx Medo Family Top-Up</a></li>
+                                <li><a class="dropdown-item" href="youngshield.html"><i class="fas fa-child"></i> Rx Medo YoungShield</a></li>
+                                <li><a class="dropdown-item" href="citizecare.html"><i class="fas fa-user-shield"></i> Rx Medo CitizenCare</a></li>
+                                <li><a class="dropdown-item" href="guardiancare.html"><i class="fas fa-user-shield"></i> Rx Medo GuardianCare</a></li>
+                                <li><a class="dropdown-item" href="medoFamilysecure.html"><i class="fas fa-home"></i> Rx Medo FamilySecure</a></li>
+                                <li><a class="dropdown-item" href="seniorshield.html"><i class="fas fa-user"></i> Rx Medo SeniorShield</a></li>
+                            </ul>
+                        </div>
+                        <li class="nav-item" style="margin-top:.5rem;"><a class="nav-link" href="Hospitals.html"><div class="mobile-item"><i class="fas fa-hospital"></i><span>Hospitals</span></div></a></li>
+                        <li class="nav-item"><a class="nav-link" href="OPD.html"><div class="mobile-item"><i class="fas fa-stethoscope"></i><span>OPD</span></div></a></li>
+                        <li class="nav-item"><a class="nav-link" href="Pharmacy.html"><div class="mobile-item"><i class="fas fa-pills"></i><span>Pharmacy</span></div></a></li>
+                        <li class="nav-item"><a class="nav-link" href="Diagnostics.html"><div class="mobile-item"><i class="fas fa-microscope"></i><span>Diagnostics</span></div></a></li>
+                        <li class="nav-item"><a class="nav-link" href="Career.html"><div class="mobile-item"><i class="fas fa-briefcase"></i><span>Career</span></div></a></li>
+                    </ul>
+                    <div b-kr65r3xkkp class="ms-auto"><a class="nav-link get-card-btn" href="signup.html"><i b-kr65r3xkkp class="fas fa-id-card d-md-none me-2"></i> Get Your Card</a></div>
+                    <div b-kr65r3xkkp class="ms-auto"><a class="nav-link get-card-btn" href="login.html"><i b-kr65r3xkkp class="fas fa-id-card d-md-none me-2"></i> Login</a></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- ========== END HEADER ========== -->
+
+    <!-- FLOATING PURCHASE BUTTON -->
+    <a href="signup.html" class="floating-btn">Purchase Card</a>
+
+    <!-- ========== HERO SECTION ========== -->
+    <div class="hero-wrapper">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="hero-content-grid">
+            <!-- LEFT SIDE -->
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <i class="fas fa-bolt"></i> Limited Period Offer — Save 57%
+                </div>
+
+                <h1 class="hero-title">
+                    Rx Medo<br>
+                    <span class="gradient-text">SeniorShield</span> Card
+                </h1>
+
+                <p class="hero-subtitle">
+                    Premium healthcare protection designed exclusively for seniors aged 56–65 years.
+                    Get ₹5 Lakh insurance cover from Day 1, including pre-existing diseases.
+                </p>
+
+                <!-- Feature Pills -->
+                <div class="hero-features-grid">
+                    <div class="hero-feature-pill">
+                        <i class="fas fa-shield-heart pill-icon-green"></i> ₹5L Insurance Cover
+                    </div>
+                    <div class="hero-feature-pill">
+                        <i class="fas fa-calendar-check pill-icon-blue"></i> Coverage from Day 1
+                    </div>
+                    <div class="hero-feature-pill">
+                        <i class="fas fa-disease pill-icon-gold"></i> Pre-existing Covered
+                    </div>
+                    <div class="hero-feature-pill">
+                        <i class="fas fa-ambulance pill-icon-red"></i> Free Ambulance
+                    </div>
+                    <div class="hero-feature-pill">
+                        <i class="fas fa-video pill-icon-purple"></i> Free E-Consultation
+                    </div>
+                    <div class="hero-feature-pill">
+                        <i class="fas fa-truck-medical pill-icon-green"></i> Free Medicine Delivery
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="hero-cta-group">
+                    <a href="signup.html" class="hero-btn-primary">
+                        <i class="fas fa-cart-shopping"></i> Get This Card Now
+                    </a>
+                    <a href="#benefits" class="hero-btn-secondary">
+                        <i class="fas fa-info-circle"></i> View Benefits
+                    </a>
+                </div>
+
+                <!-- Trust Bar -->
+                <div class="hero-trust-bar">
+                    <div class="trust-avatars">
+                        <div class="trust-avatar">RK</div>
+                        <div class="trust-avatar">SM</div>
+                        <div class="trust-avatar">AP</div>
+                        <div class="trust-avatar">VG</div>
+                        <div class="trust-avatar" style="background:linear-gradient(135deg,#ff4e50,#ff8c00);">+</div>
+                    </div>
+                    <div class="trust-text"><strong>2,500+</strong> seniors already enrolled</div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE — Card + Price -->
+            <div class="hero-right">
+                <div class="card-showcase">
+                    <div class="card-glow"></div>
+                    <div class="card-frame" id="cardFrame">
+                        <div class="slides" id="slides">
+                            <img src="images/Medo Senior Shield Front.jpg" alt="Rx Medo Card Front">
+                            <img src="images/Medo Senior Shield Front (2).jpg" alt="Rx Medo Card Back">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-indicators">
+                    <button class="slide-dot active" data-slide="0"></button>
+                    <button class="slide-dot" data-slide="1"></button>
+                </div>
+
+                <div class="hero-price-box">
+                    <div class="price-label">
+                        <i class="fas fa-star"></i> Special Offer Price <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="old-price">₹58,000</span>
+                        <div class="new-price-tag">
+                            <span class="currency">₹</span>
+                            <span class="price-amount">25,000</span>
+                            <div class="price-validity">
+                                <i class="fas fa-calendar-alt"></i> Valid till Feb 2026
+                            </div>
+                        </div>
+                    </div>
+                    <div class="savings-pill">
+                        <i class="fas fa-piggy-bank"></i> You save ₹33,000 (57% OFF)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TICKER MARQUEE ========== -->
+    <div class="ticker-bar">
+        <div class="ticker-track">
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Up to 50% off Diagnostics</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Free Ambulance Service</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> 500+ Partner Hospitals</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> ₹5 Lakh Insurance Cover</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Free E-Consultation</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Coverage from Day 1</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Pre-existing Diseases Covered</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> 24/7 Support Available</div>
+            <!-- Duplicate for seamless loop -->
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Up to 50% off Diagnostics</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Free Ambulance Service</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> 500+ Partner Hospitals</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> ₹5 Lakh Insurance Cover</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Free E-Consultation</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Coverage from Day 1</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> Pre-existing Diseases Covered</div>
+            <div class="ticker-item"><i class="fas fa-check-circle"></i> 24/7 Support Available</div>
+        </div>
+    </div>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag reveal"><i class="fas fa-route"></i> SIMPLE PROCESS</div>
+                <h2 class="section-main-title reveal">How It <span>Works</span></h2>
+                <p class="section-desc reveal">Getting started with your Rx Medo SeniorShield Card is quick, easy, and hassle-free. Follow these simple steps.</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-card reveal" style="transition-delay:0.1s;">
+                    <div class="step-connector"></div>
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                    <h4>Sign Up Online</h4>
+                    <p>Fill out the quick registration form with your basic details and choose your card.</p>
+                </div>
+                <div class="step-card reveal" style="transition-delay:0.25s;">
+                    <div class="step-connector"></div>
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                    <h4>Make Payment</h4>
+                    <p>Complete secure payment via UPI, Net Banking, or Card. Instant confirmation.</p>
+                </div>
+                <div class="step-card reveal" style="transition-delay:0.4s;">
+                    <div class="step-connector"></div>
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-id-badge"></i></div>
+                    <h4>Receive Your Card</h4>
+                    <p>Get your physical card delivered to your doorstep within 5–7 business days.</p>
+                </div>
+                <div class="step-card reveal" style="transition-delay:0.55s;">
+                    <div class="step-number">4</div>
+                    <div class="step-icon"><i class="fas fa-heart-pulse"></i></div>
+                    <h4>Start Saving</h4>
+                    <p>Show your card at partner hospitals, labs, and pharmacies to enjoy instant discounts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BENEFITS SECTION ========== -->
+    <section class="benefits-section" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag reveal"><i class="fas fa-award"></i> CARD BENEFITS</div>
+                <h2 class="section-main-title reveal">Exclusive Benefits for <span>RX Medo SeniorShield</span> Card Holders</h2>
+                <p class="section-desc reveal">Experience premium healthcare privileges, exclusive discounts, and free medical services designed to care for you and your family.</p>
+            </div>
+
+            <div class="benefits-grid">
+                <!-- Card 1 -->
+                <div class="benefit-card card-discount reveal-left" style="transition-delay:0.1s;">
+                    <div class="card-corner"></div>
+                    <div class="card-ribbon">Popular</div>
+                    <div class="benefit-icon-box"><i class="fas fa-percent"></i></div>
+                    <h5>Ultimate Discounts</h5>
+                    <ul class="benefit-list">
+                        <li>20–50% off in Diagnostics & Laboratories</li>
+                        <li>20–50% off in OPD</li>
+                        <li>20–22% off in Pharmacy</li>
+                        <li>10–20% off on Hospital Operations</li>
+                        <li>10–20% off on Short-Term Hospitalization</li>
+                        <li>10–20% off on Home Nurses & Physio</li>
+                        <li>10–20% off on Medical Devices</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="benefit-card card-benefits reveal" style="transition-delay:0.3s;">
+                    <div class="card-corner"></div>
+                    <div class="benefit-icon-box"><i class="fas fa-hand-holding-medical"></i></div>
+                    <h5>Member Benefits</h5>
+                    <ul class="benefit-list">
+                        <li>Basic Feature of RX Medo Card</li>
+                        <li>The Age limit is 56 to 65 years</li>
+                        <li>Insurance for 5Lac with coverage from Day 1</li>
+                        <li>Covering pre-existing diseases</li>
+                        <li>Free OPD in multiple hospitals</li>
+                        <li>Free home delivery of medicines</li>
+                        <li>Online free E-Consultation</li>
+                        <li>Free Ambulance service</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="benefit-card card-privileges reveal-right" style="transition-delay:0.5s;">
+                    <div class="card-corner"></div>
+                    <div class="benefit-icon-box"><i class="fas fa-user-shield"></i></div>
+                    <h5>Member Privileges</h5>
+                    <div class="privilege-block">
+                        <h6><i class="fas fa-heart-pulse" style="color:#ff4e50;"></i> Affordable Healthcare</h6>
+                        <p>Enjoy significant savings on routine medical expenses and prescriptions.</p>
+                    </div>
+                    <div class="privilege-block">
+                        <h6><i class="fas fa-shield-halved" style="color:#2196f3;"></i> Easy Verification</h6>
+                        <p>All cards are trackable and verifiable via RX MedoCard's digital system.</p>
+                    </div>
+                    <div class="privilege-block">
+                        <h6><i class="fas fa-people-roof" style="color:#00c853;"></i> Family Coverage</h6>
+                        <p>Extend benefits to your loved ones under one membership plan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS SECTION ========== -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card reveal" style="transition-delay:0.1s;">
+                    <div class="stat-icon"><i class="fas fa-shield-heart"></i></div>
+                    <div class="stat-number"><span class="count-up" data-target="5">0</span>L+</div>
+                    <div class="stat-label">Insurance Cover</div>
+                </div>
+                <div class="stat-card reveal" style="transition-delay:0.2s;">
+                    <div class="stat-icon"><i class="fas fa-tags"></i></div>
+                    <div class="stat-number"><span class="count-up" data-target="50">0</span>%</div>
+                    <div class="stat-label">Max Discount</div>
+                </div>
+                <div class="stat-card reveal" style="transition-delay:0.3s;">
+                    <div class="stat-icon"><i class="fas fa-hospital"></i></div>
+                    <div class="stat-number"><span class="count-up" data-target="500">0</span>+</div>
+                    <div class="stat-label">Partner Hospitals</div>
+                </div>
+                <div class="stat-card reveal" style="transition-delay:0.4s;">
+                    <div class="stat-icon"><i class="fas fa-headset"></i></div>
+                    <div class="stat-number"><span class="count-up" data-target="24">0</span>/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHY CHOOSE US ========== -->
+    <section class="why-choose">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag reveal"><i class="fas fa-star"></i> WHY US</div>
+                <h2 class="section-main-title reveal">Why Seniors <span>Trust</span> Rx Medo SeniorShield</h2>
+                <p class="section-desc reveal">Built with love for India's seniors — combining affordability, accessibility, and comprehensive coverage under one card.</p>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-card reveal" style="transition-delay:0.1s;">
+                    <div class="why-icon"><i class="fas fa-clock"></i></div>
+                    <div><h5>Instant Activation</h5><p>Your insurance cover of ₹5 Lakh starts from Day 1 — no waiting period at all.</p></div>
+                </div>
+                <div class="why-card reveal" style="transition-delay:0.2s;">
+                    <div class="why-icon"><i class="fas fa-virus-slash"></i></div>
+                    <div><h5>Pre-existing Covered</h5><p>Unlike most policies, we cover pre-existing diseases from the very beginning.</p></div>
+                </div>
+                <div class="why-card reveal" style="transition-delay:0.3s;">
+                    <div class="why-icon"><i class="fas fa-laptop-medical"></i></div>
+                    <div><h5>Free E-Consultation</h5><p>Consult specialist doctors from home via our digital platform — completely free.</p></div>
+                </div>
+                <div class="why-card reveal" style="transition-delay:0.4s;">
+                    <div class="why-icon"><i class="fas fa-truck-fast"></i></div>
+                    <div><h5>Free Medicine Delivery</h5><p>Get your prescribed medicines delivered to your doorstep at no extra charge.</p></div>
+                </div>
+                <div class="why-card reveal" style="transition-delay:0.5s;">
+                    <div class="why-icon"><i class="fas fa-wallet"></i></div>
+                    <div><h5>Massive Savings</h5><p>Save up to 50% on diagnostics, labs, OPD consultations, and pharmacy bills.</p></div>
+                </div>
+                <div class="why-card reveal" style="transition-delay:0.6s;">
+                    <div class="why-icon"><i class="fas fa-hands-holding-child"></i></div>
+                    <div><h5>Senior-Friendly</h5><p>Specially designed for ages 56–65 with easy enrollment and hassle-free claims.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <!-- <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag reveal"><i class="fas fa-quote-left"></i> TESTIMONIALS</div>
+                <h2 class="section-main-title reveal">What Our <span>Members</span> Say</h2>
+                <p class="section-desc reveal">Real stories from seniors who are benefiting from the Rx Medo SeniorShield Card every day.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal" style="transition-delay:0.1s;">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"I saved over ₹15,000 on my health checkup and medicines in just 3 months. The free ambulance service is a blessing for seniors like me."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info"><h6>Rajesh Kumar</h6><span>Age 62, Delhi</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay:0.25s;">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"The e-consultation feature is amazing. I can talk to specialist doctors without traveling. My diabetes management has improved a lot."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:linear-gradient(135deg,#00c853,#00e676);">SM</div>
+                        <div class="author-info"><h6>Sunita Mehra</h6><span>Age 58, Ghaziabad</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay:0.4s;">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Getting insurance with pre-existing disease coverage at this price is unbelievable. The medicine delivery to my home is very convenient."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:linear-gradient(135deg,#ff4e50,#ff8c00);">AP</div>
+                        <div class="author-info"><h6>Arun Patel</h6><span>Age 64, Noida</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- ========== FAQ SECTION ========== -->
+    <!-- <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag reveal"><i class="fas fa-circle-question"></i> FAQ</div>
+                <h2 class="section-main-title reveal">Frequently Asked <span>Questions</span></h2>
+                <p class="section-desc reveal">Got questions? We've got answers. Find everything you need to know about the SeniorShield Card.</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item reveal" style="transition-delay:0.1s;">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is the age eligibility for the SeniorShield Card?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Rx Medo SeniorShield Card is designed exclusively for seniors aged 56 to 65 years. It provides comprehensive healthcare benefits tailored for this age group.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="transition-delay:0.2s;">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Does the insurance cover pre-existing diseases?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Unlike most insurance plans, the SeniorShield Card covers pre-existing diseases from Day 1. There is no waiting period for pre-existing conditions.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="transition-delay:0.3s;">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How much insurance coverage do I get?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You get ₹5 Lakh of health insurance coverage that is active from Day 1 of card activation. This covers hospitalization, surgeries, and more.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="transition-delay:0.4s;">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can I avail the discounts?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Simply show your Rx Medo SeniorShield Card at any of our 500+ partner hospitals, diagnostic labs, or pharmacies to avail instant discounts on the spot.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="transition-delay:0.5s;">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is the free ambulance service available 24/7?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, our emergency ambulance service is available 24/7 for all SeniorShield Card holders at no additional cost within the covered service areas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- ========== TALK TO EXPERT FORM ========== -->
+    <!--<section class="expert-form-section">-->
+    <!--    <div class="container">-->
+    <!--        <div class="expert-form-wrapper reveal-scale">-->
+    <!--            <div class="expert-form-card" id="expertFormCard">-->
+
+                    <!-- Form Content -->
+    <!--                <div id="formContent">-->
+    <!--                    <div class="expert-emoji">👋</div>-->
+    <!--                    <h3>Hey! Talk to Our Expert</h3>-->
+    <!--                    <p class="form-subtitle">Have questions? Our healthcare experts will call you back within 30 minutes. No spam, we promise!</p>-->
+
+    <!--                    <form class="expert-form" id="expertForm" onsubmit="handleFormSubmit(event)">-->
+    <!--                        <div class="form-group">-->
+    <!--                            <label for="expertName">Your Name</label>-->
+    <!--                            <div class="input-wrapper">-->
+    <!--                                <input type="text" id="expertName" placeholder="Enter your full name" required>-->
+    <!--                                <i class="fas fa-user input-icon"></i>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+
+    <!--                        <div class="form-group">-->
+    <!--                            <label for="expertPhone">Contact Number</label>-->
+    <!--                            <div class="input-wrapper">-->
+    <!--                                <input type="tel" id="expertPhone" placeholder="Enter your 10-digit number" pattern="[0-9]{10}" required>-->
+    <!--                                <i class="fas fa-phone input-icon"></i>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+
+    <!--                        <button type="submit" class="expert-submit-btn">-->
+    <!--                            <i class="fas fa-paper-plane"></i> Request Callback-->
+    <!--                        </button>-->
+    <!--                    </form>-->
+
+    <!--                    <div class="form-trust-icons">-->
+    <!--                        <div class="trust-badge-sm"><i class="fas fa-lock"></i> 100% Secure</div>-->
+    <!--                        <div class="trust-badge-sm"><i class="fas fa-check-circle"></i> No Spam</div>-->
+    <!--                        <div class="trust-badge-sm"><i class="fas fa-bolt"></i> Quick Response</div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+
+                    <!-- Success Message -->
+    <!--                <div class="form-success-msg" id="formSuccess">-->
+    <!--                    <i class="fas fa-circle-check"></i>-->
+    <!--                    <h4>Thank You! 🎉</h4>-->
+    <!--                    <p>Our expert will call you back within 30 minutes. Stay tuned!</p>-->
+    <!--                </div>-->
+
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</section>-->
+
+    <!-- ========== CTA BANNER ========== -->
+    <section class="cta-banner">
+        <div class="cta-content reveal">
+            <h2>Ready to Protect Your Health?</h2>
+            <p>Join thousands of seniors who are saving big on healthcare with the Rx Medo SeniorShield Card. Don't miss the special offer — only ₹25,000 instead of ₹58,000!</p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="hero-btn-primary">
+                    <i class="fas fa-cart-shopping"></i> Get Your Card Now
+                </a>
+                <a href="tel:+919999307517" class="hero-btn-secondary">
+                    <i class="fas fa-phone"></i> Call Us: +91 9999307517
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER (UNCHANGED) ========== -->
+    <footer b-kr65r3xkkp class="footer-modern py-5">
+        <div b-kr65r3xkkp class="w-full">
+            <div b-kr65r3xkkp class="row">
+                <div b-kr65r3xkkp class="col-lg-4 mb-4 mb-lg-0">
+                    <div b-kr65r3xkkp class="footer-logo">
+                        <div b-kr65r3xkkp class="footer-logo-with-icon">
+                            <div b-kr65r3xkkp class="footer-logo-icon"><img src="images/logo.ico" alt="RX MEDO CARD Logo" class="footer-logo-image" /></div>
+                            <div b-kr65r3xkkp class="footer-logo-text-wrapper">
+                                <div b-kr65r3xkkp class="footer-logo-text">Rx Medo Card</div>
+                                <div b-kr65r3xkkp class="footer-logo-subtitle">AN INITIATIVE OF Rx MEDICAL TRUST</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p b-kr65r3xkkp class="mt-3 footer-description">Rx Medo Card is a healthcare discount program designed to make quality healthcare accessible and affordable for everyone.</p>
+                    <div b-kr65r3xkkp class="tagline-footer">Your Health, Our Priority</div>
+                    <div b-kr65r3xkkp class="mt-0 ms-n10"><a class="footer-cta-button" href="signup.html">Get Your Card</a></div>
+                </div>
+                <div b-kr65r3xkkp class="col-lg-2 col-md-4 mb-4 mb-md-0" style="margin-top:15px;">
+                    <h5 style="margin-left:0px;border-bottom:3px solid red;display:inline-block;padding-bottom:5px;">Quick Links</h5>
+                    <ul b-kr65r3xkkp class="footer-links">
+                        <li b-kr65r3xkkp><a href="index.html">Home</a></li>
+                        <li b-kr65r3xkkp><a href="Offers.html">Card Details</a></li>
+                        <li b-kr65r3xkkp><a href="Hospitals.html">Hospitals</a></li>
+                        <li b-kr65r3xkkp><a href="OPD.html">OPD</a></li>
+                        <li b-kr65r3xkkp><a href="Pharmacy.html">Pharmacy</a></li>
+                        <li b-kr65r3xkkp><a href="Diagnostics.html">Diagnostics</a></li>
+                    </ul>
+                </div>
+                <div b-kr65r3xkkp class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5 style="margin-left:0px;border-bottom:3px solid red;display:inline-block;padding-bottom:5px;">Our Services</h5>
+                    <ul b-kr65r3xkkp class="footer-links">
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="#">Family Physician</a></li>
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="#">Specialist Consultations</a></li>
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="Diagnostics.html">Diagnostic Tests</a></li>
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="#">Hospital Packages</a></li>
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="#">Senior Care</a></li>
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="cancle.html">Cancellation & Refund Policy</a></li>
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="shipping.html">Shipping & Delivery Policy</a></li>
+                    </ul>
+                </div>
+                <div b-kr65r3xkkp class="col-lg-3 col-md-4">
+                    <h5 style="margin-left:0px;border-bottom:3px solid red;display:inline-block;padding-bottom:5px;">Contact Us</h5>
+                    <ul b-kr65r3xkkp class="footer-contact">
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="tel:+919876543210"><i b-kr65r3xkkp class="bi bi-telephone me-2"></i> +91 9999307517</a></li>
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="mailto:info@rxmedocard.com"><i b-kr65r3xkkp class="bi bi-envelope me-2"></i> info@rxmedocard.com</a></li>
+                        <li b-kr65r3xkkp><a b-kr65r3xkkp href="#"><i b-kr65r3xkkp class="bi bi-geo-alt me-2"></i> C Block, Phase2, Industrial Area, Sector 62, Noida, Uttar Pradesh 201309</a></li>
+                    </ul>
+                    <div b-kr65r3xkkp class="footer-social">
+                        <a b-kr65r3xkkp href="https://www.facebook.com/share/1BNoh3faPB/"><i b-kr65r3xkkp class="bi bi-facebook"></i></a>
+                        <a b-kr65r3xkkp href="https://www.instagram.com/rxmedo_card?igsh=bGJjbDMxNHJkNmhr"><i b-kr65r3xkkp class="bi bi-instagram"></i></a>
+                        <a b-kr65r3xkkp href="https://www.linkedin.com/company/rx-medical-trust/"><i b-kr65r3xkkp class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr b-kr65r3xkkp class="footer-divider" />
+        <div b-kr65r3xkkp class="row footer-bottom">
+            <div b-kr65r3xkkp class="col-md-6 text-center text-md-start"><p b-kr65r3xkkp>&copy; 2025 - <b>Rx Medo Card</b>. All rights reserved.</p></div>
+            <div b-kr65r3xkkp class="col-md-6 text-center text-md-end">
+                <a b-kr65r3xkkp href="policies.html" class="me-3">Privacy Policy</a>
+                <a b-kr65r3xkkp href="terms.html" class="me-3">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+    <!-- ========== END FOOTER ========== -->
+
+    <!-- SCRIPTS -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/site3d49.js?v=3mhbb32mML9fvJL9BlFT134NRMU0vqwPRnZEDt880_E"></script>
+    <script src="js/navbar-active8e7c.js?v=dGPriXiIAjlcajsO9YP960In1CeOdTqoMQj1hIvVDHA"></script>
+    <script src="js/navbar-toggle-fix.html"></script>
+    <script src="js/mobile-menub273.js?v=Gh3nMh0WrzIl_Vl8_zqvsQ4blj2vRct2WTrrzuvIwVU"></script>
+    <script src="js/disable-swipe2953.js?v=PwgUEYjVAVjGPihdqv4XRIAwAykwOU08FzZSoeTBu08"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // ===== PAGE LOADER =====
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('pageLoader').classList.add('hidden');
+            }, 600);
+        });
+
+        // ===== PARTICLES =====
+        (function () {
+            const c = document.getElementById('particles');
+            const colors = ['#ff4e50', '#f9d423', '#00c6fb', '#005bea', '#00e676', '#b388ff'];
+            for (let i = 0; i < 35; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                const size = Math.random() * 14 + 4;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.background = colors[Math.floor(Math.random() * colors.length)];
+                p.style.animationDuration = (Math.random() * 18 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 12) + 's';
+                c.appendChild(p);
+            }
+        })();
+
+        // ===== CARD SLIDER =====
+        let slideIndex = 0;
+        const slidesEl = document.getElementById("slides");
+        const totalSlides = slidesEl.children.length;
+        const dots = document.querySelectorAll('.slide-dot');
+
+        function showSlide(idx) {
+            slideIndex = idx;
+            slidesEl.style.transform = `translateX(-${slideIndex * 50}%)`;
+            dots.forEach((d, i) => d.classList.toggle('active', i === slideIndex));
+        }
+        function nextSlide() { showSlide((slideIndex + 1) % totalSlides); }
+        let slideInterval = setInterval(nextSlide, 4000);
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(parseInt(dot.dataset.slide));
+                slideInterval = setInterval(nextSlide, 4000);
+            });
+        });
+
+        // ===== TILT EFFECT =====
+        const cardFrame = document.getElementById('cardFrame');
+        if (cardFrame && window.innerWidth > 768) {
+            cardFrame.addEventListener('mousemove', (e) => {
+                const rect = cardFrame.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -10;
+                const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 10;
+                cardFrame.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            cardFrame.addEventListener('mouseleave', () => {
+                cardFrame.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        }
+
+        // ===== SCROLL REVEAL =====
+        function revealOnScroll() {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // ===== BACK TO TOP =====
+        window.addEventListener('scroll', () => {
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // ===== COUNT UP =====
+        function animateCounters() {
+            document.querySelectorAll('.count-up').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                function update() {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.textContent = target;
+                    }
+                }
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) { update(); observer.unobserve(counter); }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(counter);
+            });
+        }
+        animateCounters();
+
+        // ===== FAQ TOGGLE =====
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        }
+
+        // ===== EXPERT FORM SUBMIT =====
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('expertName').value.trim();
+            const phone = document.getElementById('expertPhone').value.trim();
+            if (name && phone.length === 10) {
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('formSuccess').classList.add('show');
+                // Confetti burst
+                createConfetti();
+            }
+        }
+
+        // ===== MINI CONFETTI =====
+        function createConfetti() {
+            const card = document.getElementById('expertFormCard');
+            const colors = ['#ff4e50', '#f9d423', '#00c6fb', '#00e676', '#b388ff', '#ff8c00'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 8 + 4}px;
+                    height: ${Math.random() * 8 + 4}px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+                    top: 50%; left: 50%;
+                    pointer-events: none;
+                    z-index: 100;
+                    animation: confettiBurst ${Math.random() * 1 + 0.8}s ease-out forwards;
+                    --x: ${(Math.random() - 0.5) * 300}px;
+                    --y: ${(Math.random() - 0.5) * 300}px;
+                    --r: ${Math.random() * 720}deg;
+                `;
+                card.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }
+        }
+
+        // Confetti keyframe injection
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confettiBurst {
+                0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+                100% { transform: translate(var(--x), var(--y)) rotate(var(--r)); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== AOS =====
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ duration: 800, once: true, offset: 100 });
+        }
+    </script>
+</body>
+</html>

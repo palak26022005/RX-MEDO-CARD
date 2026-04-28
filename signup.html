@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>RX Medo Signup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial;
+      background: #f0f8ff;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select,
+    button,
+    input {
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .info-card {
+      background: #fff;
+      padding: 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .highlight-card {
+      border-color: #3062ea;
+      background: #eaf0ff;
+    }
+
+    #aiResult {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #3062ea;
+    }
+
+    .member-block {
+      background: #fff;
+      padding: 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .member-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #3062ea;
+    }
+
+    .left label {
+      color: #001d4f
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 95%;
+      max-width: 1300px;
+      background: #113cbe;
+      border-radius: 18px;
+      padding: 35px;
+      gap: 30px;
+      box-shadow: 0 15px 40px rgba(0, 86, 179, 0.15);
+      margin: 20px auto;
+    }
+
+    .left {
+      flex: 1;
+      min-width: 320px;
+      background: #f3f7ff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0, 116, 255, 0.08);
+    }
+
+    .left h2 {
+      text-align: center;
+      color: #0066ff;
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1.5px solid #cbd9ff;
+      font-size: 15px;
+      transition: 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+      outline: none;
+    }
+
+    .update-btn {
+      width: 100%;
+      padding: 14px;
+      background: #007bff;
+      color: white;
+      border-radius: 10px;
+      border: none;
+      font-size: 17px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .update-btn:hover {
+      background: #0056b3;
+      transform: scale(1.03);
+    }
+
+    .right {
+      flex: 1.3;
+      min-width: 320px;
+    }
+
+    .right h2 {
+      text-align: center;
+      font-size: 28px;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .ai-box {
+      background: #0066ff;
+      color: white;
+      padding: 14px;
+      text-align: center;
+      border-radius: 10px;
+      font-size: 20px;
+      box-shadow: 0 5px 12px rgba(0, 123, 255, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      width: 100%;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0, 132, 255, 0.15);
+      transition: 0.3s;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(0, 123, 255, 0.35);
+    }
+
+    .info-card h3 {
+      font-size: 17px;
+      color: #0066ff;
+      margin-bottom: 6px;
+    }
+
+    .info-card p {
+      font-size: 13px;
+      color: #555;
+    }
+
+    .ai-result {
+      display: none;
+      margin-top: 20px;
+      background: #ecf5ff;
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+      border-left: 5px solid #007bff;
+      font-size: 17px;
+    }
+
+    .download-btn {
+      margin-top: 10px;
+      background: #28a745;
+      padding: 10px 18px;
+      color: white;
+      border-radius: 7px;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: 0.4s ease;
+    }
+
+    .modal.show {
+      opacity: 1;
+      transform: scale(1);
+      display: flex !important;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 750px;
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      position: relative;
+      height: 300px;
+    }
+
+    .modal-left {
+      flex: 1;
+    }
+
+    .modal-right {
+      flex: 1;
+      background: linear-gradient(135deg, #0066ff, #00b7ff);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      padding: 20px;
+      font-size: 20px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 32px;
+      cursor: pointer;
+      color: #333;
+      justify-content: right;
+    }
+
+    .firework {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: #28de32;
+      border-radius: 50%;
+      animation: explode 900ms ease-out forwards;
+      pointer-events: none;
+      z-index: 2000;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(0.5);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(2);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    .modern-btn {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0061ff);
+      color: white;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+      margin: auto;
+      margin-top: 5px;
+    }
+
+    .modern-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 102, 255, 0.6);
+    }
+
+    .info-card {
+      cursor: pointer;
+      transition: 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .info-card.selected {
+      background-color: #007bff !important;
+      color: white !important;
+    }
+
+    .info-card.selected h3,
+    .info-card.selected p {
+      color: white !important;
+    }
+
+    .form-group label {
+      color: white;
+    }
+
+    .left label {
+      color: #001d4f
+    }
+
+
+    /* RESPONSIVE FIXES */
+    @media (max-width: 991px) {
+
+      body,
+      html {
+        width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      .header-modern {
+        width: 100%;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px;
+        margin: 0;
+        border-radius: 0;
+      }
+
+      .left,
+      .right {
+        width: 100% !important;
+        min-width: 100% !important;
+        padding: 20px 15px !important;
+        margin-bottom: 20px;
+      }
+
+      .left h2,
+      .right h2 {
+        font-size: 22px;
+      }
+
+      form,
+      .section,
+      .card {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100%;
+      }
+
+      input,
+      select,
+      button,
+      .form-group,
+      .ai-section,
+      .cards-section,
+      .update-btn {
+        width: 100% !important;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .card-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        grid-template-columns: 1fr;
+      }
+
+      .info-card {
+        width: 100% !important;
+        padding: 20px;
+        margin: 0;
+      }
+
+      .info-card h3 {
+        font-size: 16px;
+      }
+
+      .info-card p {
+        font-size: 12px;
+      }
+
+      .navbar-collapse {
+        max-width: 100%;
+      }
+
+      .mobile-menu-header {
+        padding: 15px;
+        background: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+        margin: 0 0 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .mobile-menu-close {
+        position: relative;
+        z-index: 9999;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #333;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      /* Mobile menu default hidden */
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+
+      /* When opened */
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 15px 10px;
+      }
+
+      .left,
+      .right {
+        padding: 15px 10px !important;
+      }
+
+      .left h2,
+      .right h2 {
+        font-size: 20px;
+      }
+
+      input,
+      select {
+        font-size: 14px;
+        padding: 10px 12px;
+      }
+
+      .update-btn {
+        font-size: 15px;
+        padding: 12px;
+      }
+
+      .info-card {
+        padding: 15px;
+      }
+
+      .info-card h3 {
+        font-size: 15px;
+      }
+
+      .info-card p {
+        font-size: 11px;
+      }
+    }
+
+    /* Tablet responsive */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .container {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/site224e.css?v=HO4U8pVv1s8xSpXlTnVX8zeioqGSm-VSHQg67yWNGkQ" />
+  <link rel="stylesheet" href="css/navbar-footer1287.css?v=NWn-1yscq8aK4w3n2kUIp-P_NRxOHQ-Ab3ZWstl1AvA" />
+  <link rel="stylesheet" href="css/homepage885b.css?v=grgIaMrrsbS3amfV_bUQkFawhUZKhE2CITZ7ndzn1A8" />
+  <link rel="stylesheet" href="css/diagnostics0076.css?v=Q9siUSGTSpuYr4IY5C97oMEjkA1oa8uv8EqT-ngTQ2o" />
+  <link rel="stylesheet" href="css/membership278c.css?v=3LSQvFy2ut5gDQY0SW_tJ6gPrlJerm3YZ6BaXy_3oAQ" />
+  <link rel="stylesheet" href="css/offers1ca2.css?v=FKkuP4F5y3Stxbzwit6mM_InpOOU6cx9PhaSmlE78iM" />
+  <link rel="stylesheet" href="css/opd9c39.css?v=Ml9JUxh8P-stvHUUBn45n_FBw8x1xarEtFJaewBKMEA" />
+  <link rel="stylesheet" href="css/pharmacy1cbb.css?v=3I2imht_sFyiU9Lce9Mnbbi8s9vDu4Ga205FsNa6lzU" />
+  <link rel="stylesheet" href="css/pharmacy-stepsc896.css?v=WwJNk4y96jOZZEpJATeXrfuU4EsboB5TP6Qo_UDXZAc" />
+  <link rel="stylesheet" href="css/hospitals5f63.css?v=S0yzu9CSebyax7SizX1d1rx8C8f0TZd04RpMtEOywRE" />
+  <link rel="stylesheet" href="css/form-styles8a13.css?v=zSAznF140rYcoTXwiAallK5gfUGB-VZGQL5zlOPTsJc" />
+  <link rel="stylesheet" href="css/payment74ef.css?v=UCYk3iwqqX5W-Yi1G0g64c9kO3HQ5mHH7HOkLoNJ27s" />
+  <link rel="stylesheet" href="css/membership-cardc6be.css?v=OxEHaafmd6dRia_Nj4k-Pnj_pMPtI3syy_2E65R656I" />
+
+  <link rel="stylesheet" href="css/mobile-menu4616.css?v=p4MnaAuXFpNys3AG04iB5aLCbvv4A-mY2_X2xe5iaGk" />
+  <link rel="stylesheet" href="css/desktop-navbare91c.css?v=g0YoDaVHWq81kNpZbEqnO5fJcuF2R9YHdGKBIxqOYB4" />
+  <link rel="stylesheet" href="RxMedoWeb.styles62d4.css?v=N9Re2D58oUQbSd4-jRhQLvwzv_lN0Gc1E-wUmfruPf4" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    /* Hide original dropdown on mobile */
+    @media (max-width: 768px) {
+      .desktop-dropdown {
+        display: none !important;
+      }
+
+      .mobile-dropdown {
+        display: block !important;
+      }
+    }
+
+    /* Hide new dropdown on desktop */
+    @media (min-width: 769px) {
+      .mobile-dropdown {
+        display: none !important;
+      }
+    }
+
+    /* Mobile dropdown styling */
+
+
+    .mobile-dropdown .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #002b5c;
+      width: 100%;
+    }
+
+    .mobile-dropdown .dropdown-item i {
+      font-size: 18px;
+      color: #002b5c;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header class="header-modern">
+    <link rel="stylesheet" href="header-modern.css" />
+
+
+    <nav class="navbar navbar-expand-custom navbar-light navbar-modern">
+      <div class="container-fluid px-4 d-flex justify-content-between align-items-center position-relative">
+
+        <!-- BRAND -->
+        <a class="navbar-brand me-4" href="index.html">
+          <div class="logo-with-icon">
+            <div class="logo-icon">
+              <img src="images/logo.ico" alt="RX MEDO CARD Logo" class="logo-image">
+            </div>
+            <div class="logo-text-wrapper">
+              <div class="logo-text">Rx Medo Card</div>
+              <div class="logo-subtitle">AN INITIATIVE OF Rx MEDICAL TRUST</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- MOBILE TOGGLER -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars-staggered" style="font-size:2rem;"></i>
+        </button>
+
+        <!-- NAV LINKS -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <!-- MOBILE MENU HEADER -->
+          <div class="mobile-menu-header d-md-none">
+            <h5 class="mobile-menu-title">Menu</h5>
+            <button class="mobile-menu-close" type="button" id="mobileMenuCloseBtn">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <ul class="navbar-nav d-flex flex-column flex-lg-row w-100">
+
+            <!-- HOME -->
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <div class="mobile-item active">
+                  <i class="fas fa-home"></i>
+                  <span>Home</span>
+                </div>
+              </a>
+            </li>
+
+            <!-- CARDS DROPDOWN -->
+            <li class="nav-item dropdown desktop-dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="cardDropdown" data-bs-toggle="dropdown">
+                <div class="mobile-item">
+                  <i class="fas fa-tags"></i>
+                  <span>Card Details</span>
+                </div>
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="cardDropdown">
+                <li><a class="dropdown-item" href="medocard.html"><i class="fas fa-id-card"></i> Rx Medo
+                    Card</a></li>
+                <!-- <li><a class="dropdown-item" href="Offers.html#membership-plans"><i class="fas fa-shield-alt"></i>  Rx Medo Insure Card</a></li> -->
+                <li><a class="dropdown-item" href="medoTopUpCard.html"><i class="fas fa-plus-circle"></i> Rx Medo Top Up
+                    Card</a></li>
+                <li><a class="dropdown-item" href="medofamily.html"><i class="fas fa-users"></i> RX Medo
+                    Family Card</a>
+                </li>
+                <li><a class="dropdown-item" href="medoTopUpfamily.html"><i class="fas fa-layer-group"></i> RX Medo
+                    Family Top-Up card</a></li>
+                <li><a class="dropdown-item" href="youngshield.html"><i class="fas fa-child"></i> Rx
+                    Medo YoungShield
+                    Card</a></li>
+                <li><a class="dropdown-item" href="citizecare.html"><i class="fas fa-user-shield"></i>
+                    Rx Medo
+                    CitizenCare Card</a></li>
+                <li><a class="dropdown-item" href="guardiancare.html"><i class="fas fa-user-shield"></i>
+                    Rx Medo
+                    GuardianCare Card</a></li>
+                <li><a class="dropdown-item" href="medoFamilysecure.html"><i class="fas fa-home"></i> RX
+                    Medo
+                    Family Secure card</a></li>
+                <li><a class="dropdown-item" href="seniorshield.html"><i class="fas fa-user"></i> Rx
+                    Medo SeniorShield
+                    Card</a></li>
+              </ul>
+            </li>
+
+            <!-- mobile dropdown -->
+            <div class="dropdown mobile-dropdown">
+              <button class="btn w-100 d-flex justify-content-between align-items-center" data-bs-toggle="dropdown">
+                <span><i class="fas fa-tags"></i> Card Details</span>
+                <i class="fas fa-chevron-down" style="margin-left: 70px;"></i>
+              </button>
+
+              <ul class="dropdown-menu w-100 mt-1">
+                <li><a class="dropdown-item" href="medocard.html"><i class="fas fa-id-card"></i> Rx Medo
+                    Card</a></li>
+                <!-- <li><a class="dropdown-item" href="Offers.html#membership-plans"><i class="fas fa-shield-alt"></i> Rx Medo
+                                        Insure Card</a></li> -->
+                <li><a class="dropdown-item" href="medoTopUpCard.html"><i class="fas fa-plus-circle"></i> RX Medo Top Up
+                    card</a></li>
+                <li><a class="dropdown-item" href="medofamily.html"><i class="fas fa-users"></i> RX Medo
+                    Family
+                    Card</a></li>
+                <li><a class="dropdown-item" href="medoTopUpfamily.html"><i class="fas fa-layer-group"></i> RX Medo
+                    Family Top-Up Card</a></li>
+                <li><a class="dropdown-item" href="youngshield.html"><i class="fas fa-child"></i> Rx
+                    Medo
+                    YoungShield</a></li>
+                <li><a class="dropdown-item" href="citizecare.html"><i class="fas fa-user-shield"></i>
+                    Rx Medo
+                    CitizenCare</a></li>
+                <li><a class="dropdown-item" href="guardiancare.html"><i class="fas fa-user-shield"></i>
+                    Rx Medo
+                    GuardianCare</a></li>
+                <li><a class="dropdown-item" href="medoFamilysecure.html"><i class="fas fa-home"></i> RX
+                    Medo
+                    Family Secure card</a></li>
+                <li><a class="dropdown-item" href="seniorshield.html"><i class="fas fa-user"></i> Rx
+                    Medo
+                    SeniorShield</a></li>
+              </ul>
+            </div>
+
+
+            <!-- HOSPITALS -->
+            <li class="nav-item" style="margin-top: .5rem;">
+              <a class="nav-link" href="Hospitals.html">
+                <div class="mobile-item">
+                  <i class="fas fa-hospital"></i>
+                  <span>Hospitals</span>
+                </div>
+              </a>
+            </li>
+
+            <!-- OPD -->
+            <li class="nav-item">
+              <a class="nav-link" href="OPD.html">
+                <div class="mobile-item">
+                  <i class="fas fa-stethoscope"></i>
+                  <span>OPD</span>
+                </div>
+              </a>
+            </li>
+
+            <!-- PHARMACY -->
+            <li class="nav-item">
+              <a class="nav-link" href="Pharmacy.html">
+                <div class="mobile-item">
+                  <i class="fas fa-pills"></i>
+                  <span>Pharmacy</span>
+                </div>
+              </a>
+            </li>
+
+            <!-- DIAGNOSTICS -->
+            <li class="nav-item">
+              <a class="nav-link" href="Diagnostics.html">
+                <div class="mobile-item">
+                  <i class="fas fa-microscope"></i>
+                  <span>Diagnostics</span>
+                </div>
+              </a>
+            </li>
+
+            <!-- CAREER -->
+            <li class="nav-item">
+              <a class="nav-link" href="Career.html">
+                <div class="mobile-item">
+                  <i class="fas fa-briefcase"></i>
+                  <span>Career</span>
+                </div>
+              </a>
+            </li>
+
+          </ul>
+
+          <!-- BUTTONS -->
+          <div b-kr65r3xkkp class="ms-auto">
+            <a class="nav-link get-card-btn" href="signup.html">
+              <i b-kr65r3xkkp class="fas fa-id-card d-md-none me-2"></i> Get Your Card
+            </a>
+          </div>
+          <div b-kr65r3xkkp class="ms-auto">
+            <a class="nav-link get-card-btn" href="login.html">
+              <i b-kr65r3xkkp class="fas fa-id-card d-md-none me-2"></i> Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <style>
+    /* basic dropdown position fix */
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .nav-item .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 5px;
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease;
+    }
+
+    /* Desktop → Hover to open */
+    @media (min-width: 992px) {
+      .nav-item.dropdown:hover .dropdown-menu {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    }
+
+    /* Mobile → open when .show class is added */
+    @media (max-width: 991px) {
+      .nav-item.dropdown.show .dropdown-menu {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    }
+  </style>
+
+  <div class="container">
+    <div class="left">
+      <form id="signupForm" method="POST" action="signup.php" enctype="multipart/form-data"
+        onsubmit="return validateForm()">
+
+        <h2>User Information</h2>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="name" id="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="text" name="phone" id="phone" placeholder="Enter 10-digit phone number" required>
+        </div>
+
+        <div class="form-group">
+  <label>Password</label>
+  <div style="position:relative;">
+    <input type="password" name="password" id="password" placeholder="Enter your password" required>
+    <i class="fas fa-eye" id="togglePassword" 
+       style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;"></i>
+  </div>
+</div>
+
+        <div class="form-group">
+          <label>Aadhaar Card Number</label>
+          <input type="text" name="aadhaar_card_no" id="aadhaar" placeholder="Enter Aadhaar Card Number" required>
+        </div>
+
+        <div class="form-group">
+          <label>PAN Card Number</label>
+          <input type="text" name="pan_card_no" id="pan" placeholder="Enter PAN Card Number" required>
+        </div>
+
+        <div class="form-group">
+          <label for="aadhaar_front">Upload Aadhaar Front</label>
+          <input type="file" name="aadhaar_front" id="aadhaar_front" accept=".jpg,.jpeg,.png,.pdf" required>
+        </div>
+
+        <div class="form-group">
+          <label for="aadhaar_back">Upload Aadhaar Back</label>
+          <input type="file" name="aadhaar_back" id="aadhaar_back" accept=".jpg,.jpeg,.png,.pdf" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pan_card_photo">Upload PAN Card Photo</label>
+          <input type="file" name="pan_card_photo" id="pan_card_photo" accept=".jpg,.jpeg,.png,.pdf" required>
+        </div>
+        <div class="form-group">
+          <label>Referral Code</label>
+          <input type="text" name="reference" id="reference" placeholder="Enter Your  Referral code">
+        </div>
+    </div>
+
+    <div class="right">
+      <h2 style="margin-top: 20px;"> Get a Card recommended by our AI 👇</h2>
+
+      <div class="form-group">
+        <label>Type</label>
+        <select name="type" id="type" onchange="handleTypeChange()" required>
+          <option value="">Select</option>
+          <option value="individual">Individual</option>
+          <option value="family">Family</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Age</label>
+        <select name="age" id="age" required>
+          <option value="">Select</option>
+          <option value="18-35">18–35</option>
+          <option value="36-45">36–45</option>
+          <option value="46-55">46–55</option>
+          <option value="56-65">56–65</option>
+          <option value="35+above">35+ above</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Do you have any Insurance</label>
+        <select name="benefits" id="benefits" required>
+          <option value="">Select</option>
+          <option value="basic">I have a personal Insurance</option>
+          <option value="family">I have a company Insurance</option>
+          <option value="extra">I have both Insurance</option>
+          <option value="premium">No I don't have any Insurance</option>
+        </select>
+      </div>
+
+      <!-- ✅ Family composition dropdown (hidden until family selected) -->
+      <div class="form-group" id="familyOptions" style="display:none;">
+        <label>Family Composition</label>
+        <select id="familyCount" onchange="renderFamilyFields()">
+          <option value="">Select Family Members</option>
+          <option value="2">Husband & Wife</option>
+          <option value="3">Husband, Wife + 1 Child</option>
+          <option value="4">Husband, Wife + 2 Children</option>
+          <option value="5">Husband, Wife + 3 Children</option>
+          <option value="6">Husband, Wife + 4 Children</option>
+        </select>
+      </div>
+
+      <!-- ✅ Container for dynamic family member fields -->
+      <div id="familyDetails"></div>
+
+      <button type="button" onclick="recommendAI()" class="update-btn">Get Recommended Card</button>
+      <div id="aiResult" style="color: white;"></div>
+      <div class="form-group">
+        <label>Do you have a Coupon Code?</label>
+        <input type="text" name="coupon_code" id="coupon_code" placeholder="Enter Coupon Code"><br><br>
+        <button type="button" onclick="verifyCoupon()" class="update-btn">Verify</button>
+      </div>
+
+      <!-- ✅ Show result here -->
+      <div id="couponResult" style="margin-top:10px; color:white;"></div>
+
+
+      <h2 style="margin-top: 15px;">Our Best Cards For You 👇</h2>
+
+      <div class="card-grid" id="cardGrid">
+        <div class="info-card">
+          <h3>RX Medo Card</h3>
+          <p>Basic features...</p>
+          <p><strong>Price:</strong> ₹3,000.00</p>
+        </div>
+        <div class="info-card">
+          <h3>Rx Medo Top Up Card</h3>
+          <p>Insurance top-up...</p>
+          <p><strong>Price:</strong> ₹3,500.00</p>
+        </div>
+        <div class="info-card">
+          <h3>RX Medo Family Card</h3>
+          <p>All RX Medo Card features...</p>
+          <p><strong>Price:</strong> ₹8,000.00</p>
+        </div>
+        <div class="info-card">
+          <h3>RX Medo Family Top-Up Card</h3>
+          <p>Extends Top-Up coverage...</p>
+          <p><strong>Price:</strong> ₹4,000.00</p>
+        </div>
+        <div class="info-card">
+          <h3>RX Medo Family Secure Card</h3>
+          <p>Includes ₹5 lakh insurance...</p>
+          <p><strong>Price:</strong> ₹15,000.00</p>
+        </div>
+        <div class="info-card">
+          <h3>RX Medo YoungShield Card</h3>
+          <p>For individuals aged 18–35...</p>
+          <p><strong>Price:</strong> ₹8,000.00</p>
+        </div>
+        <div class="info-card">
+          <h3>RX Medo CitizenCare Card</h3>
+          <p>For age 36–45...</p>
+          <p><strong>Price:</strong> ₹10,000.00</p>
+        </div>
+        <div class="info-card">
+          <h3>RX Medo GuardianCare Card</h3>
+          <p>For age 46–55...</p>
+          <p><strong>Price:</strong> ₹15,000.00</p>
+        </div>
+        <div class="info-card">
+          <h3>RX Medo SeniorShield Card</h3>
+          <p>For age 56–65...</p>
+          <p><strong>Price:</strong> ₹25,000.00</p>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top: 15px;">
+        <button type="button" id="toggleCardsBtn" class="update-btn">Show More Cards</button>
+      </div>
+
+      <input type="hidden" name="card_type" id="card_type">
+
+      <div style="text-align:center; margin-top:20px;">
+        <button type="submit" class="update-btn">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+
+  <footer b-kr65r3xkkp class="footer-modern py-5" style="background-color: #001d4f;margin-top: 20px;">
+    <div b-kr65r3xkkp class="container" style="background-color: #001d4f;">
+      <div b-kr65r3xkkp class="row">
+        <div b-kr65r3xkkp class="col-lg-4 mb-4 mb-lg-0">
+          <div b-kr65r3xkkp class="footer-logo">
+            <div b-kr65r3xkkp class="footer-logo-with-icon">
+              <div b-kr65r3xkkp class="footer-logo-icon">
+                <img src="images/logo.ico" alt="RX MEDO CARD Logo" class="footer-logo-image" />
+              </div>
+              <div b-kr65r3xkkp class="footer-logo-text-wrapper">
+                <div b-kr65r3xkkp class="footer-logo-text">Rx Medo Card</div>
+                <div b-kr65r3xkkp class="footer-logo-subtitle">
+                  AN INITIATIVE OF Rx MEDICAL TRUST
+                </div>
+              </div>
+            </div>
+          </div>
+          <p b-kr65r3xkkp class="mt-3 footer-description">
+            Rx Medo Card is a healthcare discount program designed to make
+            quality healthcare accessible and affordable for everyone.
+          </p>
+          <div b-kr65r3xkkp class="tagline-footer">
+            Your Health, Our Priority
+          </div>
+          <div b-kr65r3xkkp class="mt-4">
+            <a class="footer-cta-button" href="signup.html">
+              Get Your Card
+            </a>
+          </div>
+        </div>
+        <div b-kr65r3xkkp class="col-lg-2 col-md-4 mb-4 mb-md-0" style="margin-top: 15px;">
+          <h5 b-kr65r3xkkp class="footer-heading">Quick Links</h5>
+          <ul b-kr65r3xkkp class="footer-links">
+            <li b-kr65r3xkkp><a href="index.html">Home</a></li>
+            <li b-kr65r3xkkp><a href="Offers.html">Card Details</a></li>
+            <li b-kr65r3xkkp><a href="Hospitals.html">Hospitals</a></li>
+            <li b-kr65r3xkkp><a href="OPD.html">OPD</a></li>
+            <li b-kr65r3xkkp><a href="Pharmacy.html">Pharmacy</a></li>
+            <li b-kr65r3xkkp><a href="Diagnostics.html">Diagnostics</a></li>
+          </ul>
+        </div>
+        <div b-kr65r3xkkp class="col-lg-3 col-md-4 mb-4 mb-md-0">
+          <h5 b-kr65r3xkkp class="footer-heading">Our Services</h5>
+          <ul b-kr65r3xkkp class="footer-links">
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="#">Family Physician</a>
+            </li>
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="#">Specialist Consultations</a>
+            </li>
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="Diagnostics.html">Diagnostic Tests</a>
+            </li>
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="#">Hospital Packages</a>
+            </li>
+            <li b-kr65r3xkkp><a b-kr65r3xkkp href="#">Senior Care</a></li>
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="cancle.html">Cancellation & Refund Policy</a>
+            </li>
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="shipping.html">Shipping & Delivery Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div b-kr65r3xkkp class="col-lg-3 col-md-4">
+          <h5 b-kr65r3xkkp class="footer-heading">Contact Us</h5>
+          <ul b-kr65r3xkkp class="footer-contact">
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="tel:+919876543210"><i b-kr65r3xkkp class="bi bi-telephone me-2"></i> +91
+                9999307517</a>
+            </li>
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="mailto:info@rxmedocard.com"><i b-kr65r3xkkp class="bi bi-envelope me-2"></i>
+                info@rxmedocard.com</a>
+            </li>
+            <li b-kr65r3xkkp>
+              <a b-kr65r3xkkp href="#"><i b-kr65r3xkkp class="bi bi-geo-alt me-2"></i> C Block, Phase2, Industrial Area,
+                Sector 62, Noida, Uttar Pradesh 201309.</a>
+            </li>
+          </ul>
+          <div b-kr65r3xkkp class="footer-social">
+            <a b-kr65r3xkkp href="https://x.com/RXMedo159115"><i b-kr65r3xkkp class="bi bi-facebook"></i></a>
+            <a b-kr65r3xkkp href="https://www.instagram.com/rxmedo_official/"><i b-kr65r3xkkp
+                class="bi bi-instagram"></i></a>
+            <a b-kr65r3xkkp href="https://www.linkedin.com/in/rx-medo-2b7869390/"><i b-kr65r3xkkp
+                class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr b-kr65r3xkkp class="footer-divider" />
+      <div b-kr65r3xkkp class="row footer-bottom">
+        <div b-kr65r3xkkp class="col-md-6 text-center text-md-start">
+          <p b-kr65r3xkkp>
+            &copy; 2025 - <b>Rx Medo Card</b>. All rights reserved.
+          </p>
+        </div>
+        <div b-kr65r3xkkp class="col-md-6 text-center text-md-end">
+          <a b-kr65r3xkkp href="policies.html" class="me-3">Privacy Policy</a>
+          <a b-kr65r3xkkp href="terms.html" class="me-3">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Only ONE Bootstrap Bundle JS (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="lib/jquery/dist/jquery.min.js"></script>
+  <script src="js/site3d49.js?v=3mhbb32mML9fvJL9BlFT134NRMU0vqwPRnZEDt880_E"></script>
+  <script src="js/navbar-active8e7c.js?v=dGPriXiIAjlcajsO9YP960In1CeOdTqoMQj1hIvVDHA"></script>
+  <script src="js/navbar-toggle-fix.html"></script>
+  <script src="js/mobile-menub273.js?v=Gh3nMh0WrzIl_Vl8_zqvsQ4blj2vRct2WTrrzuvIwVU"></script>
+  <script src="js/disable-swipe2953.js?v=PwgUEYjVAVjGPihdqv4XRIAwAykwOU08FzZSoeTBu08"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  </script>
+
+  <script>
+    // ✅ FIXED: Mobile menu close button functionality
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // ✅ Close button fix - using multiple methods for reliability
+      const closeBtn = document.getElementById("mobileMenuCloseBtn");
+      const navbarCollapse = document.getElementById("navbarSupportedContent");
+
+      if (closeBtn && navbarCollapse) {
+        closeBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Method 1: Remove Bootstrap classes directly
+          navbarCollapse.classList.remove("show");
+
+          // Method 2: Use Bootstrap Collapse API
+          try {
+            let bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+            if (bsCollapse) {
+              bsCollapse.hide();
+            } else {
+              bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+              bsCollapse.hide();
+            }
+          } catch (error) {
+            console.log("Bootstrap collapse error:", error);
+          }
+
+          // Method 3: Trigger collapse event
+          navbarCollapse.classList.remove("collapsing");
+          navbarCollapse.style.height = "";
+        });
+      }
+
+      // ✅ Also add click listener using querySelector as backup
+      const closeBtnBackup = document.querySelector(".mobile-menu-close");
+      if (closeBtnBackup) {
+        closeBtnBackup.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const menu = document.getElementById("navbarSupportedContent");
+          if (menu) {
+            menu.classList.remove("show");
+            menu.classList.remove("collapsing");
+            menu.style.height = "";
+          }
+        });
+      }
+
+      // ✅ Card grid toggle functionality
+      const cards = document.querySelectorAll("#cardGrid .info-card");
+      const toggleBtn = document.getElementById("toggleCardsBtn");
+
+      let expanded = false;
+
+      function updateCardVisibility() {
+        cards.forEach((card, index) => {
+          card.style.display = (!expanded && index >= 4) ? "none" : "block";
+        });
+        toggleBtn.innerText = expanded ? "Show Less Cards" : "Show More Cards";
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        expanded = !expanded;
+        updateCardVisibility();
+      });
+
+      updateCardVisibility();
+
+      // ✅ Make cards clickable and set hidden field
+      document.querySelectorAll(".info-card").forEach(cardEl => {
+        cardEl.addEventListener("click", () => {
+          document.querySelectorAll(".info-card").forEach(c => c.classList.remove("selected"));
+          cardEl.classList.add("selected");
+
+          const title = cardEl.querySelector("h3").innerText.trim();
+          document.getElementById("card_type").value = title;
+        });
+      });
+
+      // ✅ Dropdown toggle for mobile
+      const dropdownLinks = document.querySelectorAll('.nav-item.dropdown > a');
+
+      dropdownLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          if (window.innerWidth <= 991) {
+            e.preventDefault();
+            const parent = this.parentElement;
+
+            document.querySelectorAll('.nav-item.dropdown').forEach(item => {
+              if (item !== parent) item.classList.remove('show');
+            });
+
+            parent.classList.toggle('show');
+          }
+        });
+      });
+    });
+
+    function handleTypeChange() {
+      const type = document.getElementById("type").value;
+      const familyOptions = document.getElementById("familyOptions");
+      const familyDetails = document.getElementById("familyDetails");
+
+      if (type === "family") {
+        familyOptions.style.display = "block";
+      } else {
+        familyOptions.style.display = "none";
+        familyDetails.innerHTML = "";
+      }
+    }
+
+    function renderFamilyFields() {
+      const count = parseInt(document.getElementById("familyCount").value);
+      const container = document.getElementById("familyDetails");
+      container.innerHTML = "";
+
+      if (!count || count < 2) return;
+
+      container.innerHTML += `
+    <div class="member-block">
+      <div class="member-title">Wife /Husband Details</div>
+      <label>Name</label><input type="text" name="spouse_name" placeholder="Enter Name" required>
+      <label>Date of Birth</label><input type="date" name="spouse_dob" placeholder="Enter Date of Birth" required>
+      <label>Relation</label><input type="text" name="spouse_relation" value="Spouse" >
+    </div>
+  `;
+
+      const childCount = count - 2;
+      for (let i = 1; i <= childCount; i++) {
+        container.innerHTML += `
+      <div class="member-block">
+        <div class="member-title">Child ${i} Details</div>
+        <label>Name</label><input type="text" name="child${i}_name" placeholder="Enter Name" required>
+        <label>Date of Birth</label><input type="date" name="child${i}_dob" placeholder="Enter Date of Birth" required>
+        <label>Relation</label><input type="text" name="child${i}_relation" value="Child" >
+      </div>
+    `;
+      }
+    }
+
+    function recommendAI() {
+      const type = document.getElementById("type").value;
+      const age = document.getElementById("age").value;
+      const insurance = document.getElementById("benefits").value;
+      const resultBox = document.getElementById("aiResult");
+
+      if (!type || !age || !insurance) {
+        alert("⚠ Please fill all fields before getting recommendation.");
+        resultBox.innerHTML = "⚠ Please fill all fields!";
+        return;
+      }
+
+      let health = "NO";
+      let group = "NO";
+
+      if (insurance === "basic" || insurance === "family") health = "YES";
+      if (insurance === "extra") { health = "YES"; group = "YES"; }
+
+      let card = "";
+      if (type === "individual") {
+        if (health === "YES" && group === "YES") card = "RX Medo Card";
+        else if (health === "YES" || group === "YES") card = "Rx Medo Top Up Card";
+        else {
+          if (age === "18-35") card = "RX Medo YoungShield Card";
+          else if (age === "36-45") card = "RX Medo CitizenCare Card";
+          else if (age === "46-55") card = "RX Medo GuardianCare Card";
+          else if (age === "56-65") card = "RX Medo SeniorShield Card";
+          else if (age === "35+above") card = "RX Medo SeniorShield Card";
+        }
+      } else if (type === "family") {
+        if (health === "YES" && group === "YES") card = "RX Medo Family Card";
+        else if (health === "YES" || group === "YES") card = "RX Medo Family Top-Up card";
+        else {
+          if (age === "18-35") card = "RX Medo Family Secure card";
+          else if (age === "36-45") card = "RX Medo CitizenCare Card";
+          else if (age === "46-55") card = "RX Medo GuardianCare Card";
+          else if (age === "56-65") card = "RX Medo SeniorShield Card";
+          else if (age === "35+above") card = "RX Medo Family Card";
+        }
+      }
+
+      const cards = document.querySelectorAll(".info-card");
+      cards.forEach(c => {
+        const title = c.querySelector("h3").innerText.trim();
+        if (title === card || title === "RX Medo Card") {
+          c.style.display = "block";
+          c.classList.add("highlight-card");
+        } else {
+          c.style.display = "none";
+          c.classList.remove("highlight-card");
+        }
+      });
+
+      resultBox.innerHTML = ` ✅ Recommended Card: <strong>${card}</strong> + RX Medo Card`;
+
+      document.getElementById("card_type").value = card;
+
+      document.getElementById("toggleCardsBtn").style.display = "block";
+    }
+
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const aadhaar = document.getElementById("aadhaar").value.trim();
+      const pan = document.getElementById("pan").value.trim();
+
+      if (!/^[A-Za-z\s]+$/.test(name)) {
+        alert("❌ Name must contain only alphabets.");
+        return false;
+      }
+
+      if (!/^[6-9]\d{9}$/.test(phone)) {
+        alert("❌ Phone number must be 10 digits and start with 6-9.");
+        return false;
+      }
+
+      if (password === "") {
+        alert("❌ Password cannot be empty.");
+        return false;
+      }
+
+      if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email)) {
+        alert("❌ Please enter a valid email address.");
+        return false;
+      }
+
+      if (!/^\d{12}$/.test(aadhaar)) {
+        alert("❌ Aadhaar must be 12 digits.");
+        return false;
+      }
+
+      if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) {
+        alert("❌ PAN must be in proper format (e.g., ABCDE1234F).");
+        return false;
+      }
+
+      const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+      const files = ["aadhaar_front", "aadhaar_back", "pan_card_photo"];
+      for (let f of files) {
+        const fileInput = document.getElementById(f);
+        if (fileInput.files.length === 0) {
+          alert("❌ Please upload all required files.");
+          return false;
+        }
+        if (!allowedExtensions.exec(fileInput.value)) {
+          alert("❌ Only JPG, PNG, or PDF files are allowed.");
+          return false;
+        }
+      }
+
+      return true;
+    }
+function verifyCoupon(){
+    var coupon = document.getElementById("coupon_code").value;
+
+    if(coupon === ""){
+        alert("Please enter a coupon code!");
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "verify_coupon.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            // ✅ Response from PHP (e.g. "Discount 10% applied | Final Price: ₹2700")
+            var response = xhr.responseText;
+            document.getElementById("couponResult").innerHTML = response;
+
+            // ✅ Optional: If PHP returns JSON, parse and update price field
+            try {
+                var data = JSON.parse(response);
+                if(data.final_price){
+                    document.getElementById("finalPrice").innerText = "₹" + data.final_price;
+                }
+            } catch(e){
+                // If not JSON, just show raw response
+            }
+        }
+    };
+    xhr.send("coupon_code=" + encodeURIComponent(coupon));
+}
+
+  const togglePassword = document.querySelector("#togglePassword");
+  const password = document.querySelector("#password");
+
+  togglePassword.addEventListener("click", function () {
+    // toggle the type attribute
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+
+    // toggle the eye / eye-slash icon
+    this.classList.toggle("fa-eye-slash");
+  });
+
+
+
+  </script>
+ 
+
+</body>
+
+</html>

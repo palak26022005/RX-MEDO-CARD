@@ -1,0 +1,136 @@
+
+        :root {
+            /* Yahan humne color ko Soft Reddish-Pink tone diya hai */
+            --brand-red: #f25c5c; 
+            --dark-red: #d14141;
+            --pure-white: #ffffff;
+            --bg-soft: #fff5f5; /* Very light reddish white */
+            --input-bg: #fffafa;
+        }
+
+        body {
+            /* Background: Soft Pinkish-Red Gradient */
+            background: linear-gradient(135deg, #ffe9e9 0%, #ffcfcf 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .donation-card {
+            background: var(--pure-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(211, 65, 65, 0.15);
+            max-width: 550px;
+            width: 100%;
+            /* Top border wahi reddish style mein */
+            border-top: 8px solid var(--brand-red);
+        }
+
+        .header-section {
+            background: var(--pure-white);
+            padding: 30px 30px 10px 30px;
+            text-align: center;
+        }
+
+        .logo-box {
+            background: var(--bg-soft);
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid #ffeded;
+        }
+
+        .logo-box img {
+            height: 60px;
+        }
+
+        h2 {
+            color: var(--dark-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        .form-body {
+            padding: 30px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #554444;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            border: 2px solid #fceaea;
+            padding: 12px;
+            border-radius: 10px;
+            transition: 0.3s;
+            background-color: var(--input-bg);
+        }
+
+        .form-control:focus {
+            border-color: var(--brand-red);
+            box-shadow: 0 0 8px rgba(242, 92, 92, 0.2);
+            background-color: #fff;
+        }
+
+        /* Responsive Grid remains same as per your request */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 576px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-donate {
+            background: var(--brand-red);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            width: 100%;
+            margin-top: 20px;
+            transition: 0.4s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(242, 92, 92, 0.3);
+        }
+
+        .btn-donate:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(209, 65, 65, 0.4);
+            color: white;
+        }
+
+        .input-group-text {
+            background: var(--brand-red);
+            color: white;
+            border: none;
+            border-radius: 10px 0 0 10px !important;
+            font-weight: bold;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #997777;
+            margin-top: 20px;
+        }
+    
